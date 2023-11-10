@@ -1,0 +1,8 @@
+@import '@core/scss/angular/libs/form-wizard.component.scss';
+@import '@core/scss/angular/libs/select.component.scss';
+
+// @media (min-width: 576px)
+.modal-slide-in .modal-dialog {
+    width: 70rem;
+    max-width: 100vw;
+}

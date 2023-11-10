@@ -1,0 +1,20 @@
+@import '@core/scss/angular/libs/datatables.component.scss';
+
+.datatable-scroll {
+  width: auto !important;
+}
+.my-custom-scrollbar {
+  position: relative;
+  height: 200px;
+  overflow: auto;
+  }
+  .table-wrapper-scroll-y {
+  display: block;
+  }
+
+.spinner-container{
+  .spinner-grow{
+    width: 3rem;
+    height: 3rem;
+  }
+}

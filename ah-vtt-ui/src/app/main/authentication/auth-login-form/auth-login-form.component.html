@@ -1,0 +1,75 @@
+<h2 class="card-title font-weight-bold mb-1">Welcome to VTT! 👋</h2>
+<p class="card-text mb-2">Please sign-in to your account and start the adventure</p>
+<ngb-alert [type]="'danger'" [dismissible]="false" *ngIf="error">
+<div class="alert-body">
+	<p>{{ error }}</p>
+</div>
+</ngb-alert>
+<form class="auth-login-form mt-2" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+	  <label class="form-label" for="login-email">Email</label>
+	  <input
+		  type="text"
+		  formControlName="email"
+		  class="form-control"
+		  [ngClass]="{ 'is-invalid': submitted && formData.email.errors }"
+		  placeholder="Enter Email"
+		  aria-describedby="login-email"
+		  autofocus=""
+		  tabindex="1"
+		/>
+	  <div *ngIf="submitted && formData.email.errors" class="invalid-feedback">
+		  <div *ngIf="formData.email.errors.required">Email is required</div>
+  		<div *ngIf="formData.email.errors.email">Email must be a valid email address</div>
+	  </div>
+  </div>
+  <div class="form-group">
+	  <div class="d-flex justify-content-between">
+		  <label for="login-password">Password</label>
+        <a routerLink="/authentication/forgotpassword">
+          <small>Forgot Password?</small>
+        </a>
+	  </div>
+	  <div class="input-group input-group-merge form-password-toggle">
+		  <input
+		    [type]="passwordTextType ? 'text' : 'password'"
+		    formControlName="password"
+		    class="form-control form-control-merge"
+		    [ngClass]="{ 'is-invalid error': submitted && formData.password.errors }"
+		    placeholder="Enter Password"
+		    aria-describedby="login-password"
+    		tabindex="2"/>
+		  <div class="input-group-append">
+			  <span class="input-group-text cursor-pointer">
+          <i
+            class="feather font-small-4"
+			      [ngClass]="{
+			        'icon-eye-off': passwordTextType,
+			        'icon-eye': !passwordTextType
+			      }"
+			      (click)="togglePasswordTextType()">
+          </i>
+        </span>
+		  </div>
+	  </div>
+	  <div
+	    *ngIf="submitted && formData.password.errors"
+	    class="invalid-feedback"
+	    [ngClass]="{ 'd-block': submitted && formData.password.errors }">
+	    <div *ngIf="formData.password.errors.required">Password is required</div>
+    </div>
+  </div>
+  <div class="form-group">
+	  <div class="custom-control custom-checkbox">
+		  <input class="custom-control-input" id="remember-me" type="checkbox" tabindex="3" />
+		  <label class="custom-control-label" for="remember-me"> Remember Me</label>
+	  </div>
+  </div>
+  <button [disabled]="loading" class="btn btn-primary btn-block" tabindex="4" rippleEffect>
+    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>Sign in
+  </button>
+</form>
+<p class="text-center mt-2">
+	<span>New on our platform?</span
+		><a routerLink="/authentication/register"><span>&nbsp;Create an account</span></a>
+</p>

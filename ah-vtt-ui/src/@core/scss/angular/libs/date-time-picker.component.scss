@@ -1,0 +1,164 @@
+@import '@core/scss/base/colors';
+@import '@core/scss/base/bootstrap-extended/include'; // Bootstrap includes
+@import '@core/scss/base/components/include'; // Bootstrap includes
+
+// variable declaration
+$date-time-picker-weekdays-color: $gray-700;
+$date-time-picker-days-bg: $white;
+$date-time-picker-days-color: $gray-900;
+
+$date-time-picker-dark-bg-color: $theme-dark-body-bg;
+$date-time-picker-dark-text-color: $theme-dark-body-color;
+$date-time-picker-dark-day-hover: $gray-700;
+
+pre {
+  color: $white;
+}
+
+[ngbdatepickerdayview] {
+  &.btn-light {
+    cursor: pointer !important;
+    color: $date-time-picker-days-color !important;
+    background-color: $date-time-picker-days-bg !important;
+    border-radius: 0;
+
+    &.bg-primary {
+      background-color: $primary !important;
+      color: $white !important;
+      // border-radius: 50%;
+    }
+
+    &:focus {
+      outline: 0;
+      outline-width: 0;
+
+      &:active {
+        box-shadow: none !important;
+      }
+    }
+
+    &.active {
+      border: 0;
+    }
+    &:hover {
+      background-color: rgba($primary, 0.1) !important;
+      // border-radius: 50%;
+    }
+  }
+}
+
+.w-0 {
+  width: 0 !important;
+}
+
+.ngb-dp-header,
+.ngb-dp-weekdays,
+.ngb-dp-month-name,
+.ngb-dp-day {
+  background-color: $date-time-picker-days-bg !important;
+}
+
+.ngb-dp-weekday {
+  color: $date-time-picker-weekdays-color !important;
+  background-color: $white !important;
+}
+
+.custom-day {
+  text-align: center;
+  padding: 0.7rem 0.25rem;
+  display: inline-block;
+  height: 2.5rem;
+  width: 2.5rem;
+
+  &.bg-primary {
+    background-color: $primary !important;
+    color: $white !important;
+  }
+}
+
+.custom-day.focused {
+  background-color: $primary;
+}
+
+.custom-day.range,
+.custom-day:hover {
+  background-color: $primary;
+  color: $white;
+}
+
+.custom-day.faded {
+  background-color: rgba($primary, 0.5);
+}
+
+.weekend {
+  background-color: $warning;
+  color: $white;
+}
+
+.ngb-dp-day,
+.ngb-dp-week-number,
+.ngb-dp-weekday {
+  width: 2.5rem !important;
+  height: 2.5rem !important;
+}
+
+.ngb-dp-week-number,
+.ngb-dp-weekday {
+  font-style: normal !important;
+  font-weight: 500 !important;
+}
+
+.ngb-dp-weekdays {
+  padding-top: 0.4rem;
+}
+
+.custom-select {
+  &[aria-label='Select month'] {
+    margin-right: 7px;
+  }
+}
+
+.ngb-dp-header {
+  padding-top: 0.55rem !important;
+}
+.ngb-dp-day {
+  background-color: $date-time-picker-days-bg;
+  &:focus {
+    outline: none;
+  }
+}
+
+.btn-link {
+  color: $gray-100;
+}
+
+.ngb-dp-arrow-btn:focus {
+  outline-style: none !important;
+}
+
+// dark layout style
+.dark-layout {
+  .ngb-dp-header,
+  .ngb-dp-weekday {
+    background-color: $date-time-picker-dark-bg-color !important;
+  }
+
+  [ngbdatepickerdayview].btn-light {
+    background-color: $date-time-picker-dark-bg-color !important;
+    color: $date-time-picker-dark-text-color !important;
+    &:hover {
+      background-color: $date-time-picker-dark-day-hover !important;
+      box-shadow: none !important;
+    }
+    &.bg-primary {
+      background-color: $primary !important;
+    }
+  }
+
+  .ngb-dp-week.ngb-dp-weekdays {
+    background-color: $date-time-picker-dark-bg-color !important;
+  }
+  .ngb-dp-day {
+    background-color: $date-time-picker-dark-bg-color !important;
+  }
+}

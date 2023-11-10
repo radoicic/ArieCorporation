@@ -1,0 +1,123 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <!-- content-header component -->
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+
+    <!-- Info table about action starts -->
+    <core-card
+      (events)="emittedEvents($event)"
+      [actions]="['collapse', 'expand', 'reload', 'close']"
+      [reloadTime]="'1000'"
+    >
+      <h4 class="card-title">Card Actions</h4>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Action</th>
+                    <th>Icon</th>
+                    <th>Details</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Collapse</td>
+                    <td class="text-center">
+                      <i class="feather icon-chevron-down"></i>
+                    </td>
+                    <td>Collapse card content using collapse action.</td>
+                  </tr>
+                  <tr>
+                    <td>Expand Card</td>
+                    <td class="text-center">
+                      <i class="feather icon-maximize"></i>
+                    </td>
+                    <td>Maximize your card using expand action</td>
+                  </tr>
+                  <tr>
+                    <td>Refresh Content</td>
+                    <td class="text-center">
+                      <i class="feather icon-rotate-cw"></i>
+                    </td>
+                    <td>Refresh your card content using refresh action.</td>
+                  </tr>
+                  <tr>
+                    <td>Remove Card</td>
+                    <td class="text-center">
+                      <i class="feather icon-x"></i>
+                    </td>
+                    <td>Remove card from page using remove card action</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </core-card>
+    <!-- Info table about action Ends -->
+
+    <!-- Collapsible and Refresh Action starts -->
+    <div class="row">
+      <div class="col-md-6 col-sm-12">
+        <core-card [actions]="['collapse']">
+          <h4 class="card-title">Collapsible</h4>
+          <div class="card-body">
+            <p class="card-text">
+              You can create a collapsible content by by adding <code>[actions]="['collapse']"</code> along with
+              <code> &lt;core-card&gt;&lt;core-card&gt; </code> component.
+            </p>
+            <p>Click on <i class="feather icon-chevron-down align-middle"></i> to see card collapse in action</p>
+          </div>
+        </core-card>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <core-card [actions]="['reload']" [isReload]="isReload" (events)="reload($event)">
+          <h4 class="card-title">Refresh Content</h4>
+          <div class="card-body">
+            <p class="card-text">
+              To create a card with refresh action use <code>[actions]="['reload']"</code> along with
+              <code> &lt;core-card&gt;&lt;core-card&gt;</code> component.
+            </p>
+            <p>
+              Click on <i class="feather icon-rotate-cw align-middle"></i> icon to see refresh card content in action.
+            </p>
+          </div>
+        </core-card>
+      </div>
+    </div>
+    <!-- Collapsible and Refresh Action Ends -->
+
+    <!-- Expand And Remove Actions Starts -->
+    <div class="row">
+      <div class="col-md-6 col-sm-12">
+        <core-card [actions]="['close']">
+          <h4 class="card-title">Remove Card</h4>
+          <div class="card-body">
+            <p class="card-text">
+              You can create a closeable card by using <code>[actions]="['close']"</code> along with
+              <code> &lt;core-card&gt;&lt;core-card&gt;</code> component.
+            </p>
+            <p>Click on <i class="feather icon-x align-middle"></i> icon to see closeable card in action.</p>
+          </div>
+        </core-card>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <core-card [actions]="['expand']">
+          <h4 class="card-title">Expand Card</h4>
+          <div class="card-body">
+            <p class="card-text">
+              You can maximize the card by using <code>[actions]="['expand']"</code> along with
+              <code> &lt;core-card&gt;&lt;core-card&gt;</code> component.
+            </p>
+            <p>Click on <i class="feather icon-maximize align-middle"></i> icon to see close card in action.</p>
+          </div>
+        </core-card>
+      </div>
+    </div>
+    <!-- Expand And Remove Actions Ends -->
+  </div>
+</div>

@@ -1,0 +1,7 @@
+@import '@core/scss/base/core/menu/menu-types/horizontal-menu.scss';
+@import '@core/scss/base/core/menu/menu-types/vertical-overlay-menu.scss';
+
+// Dropdown position for horizontal layout only
+.horizontal-layout .horizontal-header-navbar .navbar-container ul.navbar-nav li.dropdown .dropdown-menu {
+  top: 41px !important;
+}

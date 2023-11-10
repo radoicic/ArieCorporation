@@ -1,0 +1,80 @@
+<!-- NAVBAR -->
+<ng-container *ngTemplateOutlet="navbar"></ng-container>
+<!--/ NAVBAR -->
+
+<!-- MENU -->
+<ng-container *ngTemplateOutlet="menu"></ng-container>
+<!--/ MENU -->
+
+<!-- APP-CONTENT -->
+<div class="app-content content">
+  <div class="content-overlay"></div>
+  <div class="header-navbar-shadow" *ngIf="!coreConfig.layout.navbar.hidden"></div>
+  <!-- CONTENT -->
+  <content></content>
+  <!--/ CONTENT -->
+</div>
+<!--/ APP-CONTENT -->
+
+<!-- FOOTER -->
+<ng-container *ngTemplateOutlet="footer"></ng-container>
+<!--/ FOOTER -->
+
+<!-- PARTIALS ---------------------------------------------------------------------------------------- -->
+
+<!-- NAVBAR -->
+<ng-template #navbar>
+  <app-navbar
+    *ngIf="!coreConfig.layout.navbar.hidden"
+    [ngClass]="[
+      coreConfig.layout.navbar.customBackgroundColor === true
+        ? coreConfig.layout.navbar.background +
+          ' ' +
+          coreConfig.layout.navbar.type +
+          ' ' +
+          coreConfig.layout.navbar.backgroundColor
+        : coreConfig.layout.navbar.background + ' ' + coreConfig.layout.navbar.type,
+      coreConfig.layout.navbar.type === 'floating-nav' ? 'container-xxl' : ''
+    ]"
+    class="header-navbar navbar navbar-expand-lg align-items-center navbar-shadow"
+  >
+  </app-navbar>
+</ng-template>
+<!--/ NAVBAR -->
+
+<!-- MENU -->
+<ng-template #menu>
+  <core-sidebar
+    name="menu"
+    [collapsed]="coreConfig.layout.menu.collapsed"
+    collapsibleSidebar="bs-gt-xl"
+    *ngIf="!coreConfig.layout.menu.hidden"
+    class="main-menu menu-fixed menu-accordio menu-shadow"
+    overlayClass="sidenav-overlay"
+    [ngClass]="[
+      coreConfig.layout.skin === 'semi-dark' || coreConfig.layout.skin === 'dark' ? 'menu-dark' : 'menu-light',
+      coreConfig.layout.menu.collapsed ? '' : 'expanded'
+    ]"
+  >
+    <app-menu menuType="vertical-menu" class="vertical-menu"></app-menu>
+  </core-sidebar>
+</ng-template>
+<!--/ MENU -->
+
+<!-- FOOTER -->
+<ng-template #footer>
+  <footer
+    *ngIf="!coreConfig.layout.footer.hidden"
+    class="footer"
+    [ngClass]="
+      coreConfig.layout.footer.customBackgroundColor === true
+        ? coreConfig.layout.footer.background +
+          ' ' +
+          coreConfig.layout.footer.type +
+          ' ' +
+          coreConfig.layout.footer.backgroundColor
+        : coreConfig.layout.footer.background + ' ' + coreConfig.layout.footer.type
+    "
+  ></footer>
+</ng-template>
+<!-- / FOOTER -->

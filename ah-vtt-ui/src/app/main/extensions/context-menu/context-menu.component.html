@@ -1,0 +1,63 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <!-- content-header component -->
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+
+    <ngb-alert [type]="'warning'" [dismissible]="false">
+      <h4 class="alert-heading">Note</h4>
+      <div class="alert-body">
+        <a target="_blank" class="alert-link" href="https://github.com/TypeCtrl/ngx-rightclick">ngx-rightclick</a>
+        doesn't support <strong>Lazy Loading</strong> To use ngx-rightclick you must declare
+        <code>ContextMenuModule</code> and custom components in <code>app.module.ts</code>. Read the official
+        ngx-rightclick
+        <a target="_blank" class="alert-link" href="https://github.com/TypeCtrl/ngx-rightclick"><u>Documentation</u></a>
+        for a full list of instructions and other options
+      </div>
+    </ngb-alert>
+
+    <!-- Right Click contextual -->
+    <core-card-snippet [snippetCode]="_snippetCodeBasicRight">
+      <h4 class="card-title">Right Click Basic Menu</h4>
+      <div class="card-body">
+        <p class="card-text">
+          To create basic context menu use directive <code>[contextMenuTrigger]="menu"</code> and pass your custom
+          component to <code>menu</code> variable.
+        </p>
+        <button class="btn btn-outline-primary" [contextMenuTrigger]="basicContextMenu" type="button" rippleEffect>
+          Right Click on Me
+        </button>
+      </div>
+    </core-card-snippet>
+    <!--/ Right Click contextual -->
+
+    <!-- Right Click Animated contextual -->
+    <core-card-snippet [snippetCode]="_snippetCodeAnimatedRight">
+      <h4 class="card-title">Right Click Animated Basic Menu</h4>
+      <div class="card-body">
+        <p class="card-text">
+          To create animated basic context menu use directive <code>[contextMenuTrigger]="animatedMenu"</code> and pass
+          your animated custom component to <code>animatedMenu</code> variable.
+        </p>
+        <button class="btn btn-outline-primary" [contextMenuTrigger]="animatedContextMenu" type="button" rippleEffect>
+          Right Click on Me
+        </button>
+      </div>
+    </core-card-snippet>
+    <!--/ Right Click Animated contextual -->
+
+    <!-- Right Click Sub Menu Contextual -->
+    <core-card-snippet [snippetCode]="_snippetCodeSubMenuRight">
+      <h4 class="card-title">Right Click Sub Menu</h4>
+      <div class="card-body">
+        <p class="card-text">
+          To create sub-menu context menu use directive <code>[contextMenuTrigger]="subMenu"</code> and pass your custom
+          component to <code>menu</code> variable.
+        </p>
+        <button class="btn btn-outline-primary" [contextMenuTrigger]="subMenuContextMenu" type="button" rippleEffect>
+          Right Click on Me
+        </button>
+      </div>
+    </core-card-snippet>
+    <!--/ Right Click Sub Menu Contextual -->
+  </div>
+</div>

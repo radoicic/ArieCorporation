@@ -1,0 +1,135 @@
+<div class="content-wrapper container-xxl p-0">
+	<div class="content-body">
+		<app-content-header [contentHeader]="contentHeader"></app-content-header>
+	
+		<section id="home-page">
+			
+			<div class="row">
+				<div class="col-12">
+					<div class="card">
+						<div class="card-header">
+							<!-- <h4 class="card-title">{{labels.pageHeader}}</h4> -->
+						</div>
+						<div class="pricing-free-trial">
+							<div class="row">
+								<div class="col-12 col-lg-10 col-lg-offset-3 mx-auto">
+									<div class="pricing-trial-content d-flex justify-content-between">
+										<div class="text-center text-md-left mt-3">										
+											<h3 class="text-primary">{{labels.pageHeader}}
+											</h3>
+										<h5>Manage all countries, provinces, districts, villages and SDPs. </h5>
+											
+										</div><img src="assets/images/illustration/regions.png"
+											alt="svg img" class="pricing-trial-img img-fluid" style="width: 215px;
+">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="card-body">
+							<button class="btn btn-primary" rippleEffect (click)="refreshAndOpenForm(formModal)">
+								<i data-feather="plus" class="mr-0 mr-sm-1"></i>
+								<span class="d-none d-sm-inline-block">{{labels.addButton}}</span>
+							</button>
+						</div>
+						<table class="table table-hover">
+							<thead>
+								
+								<tr>
+									<th scope="col"> # </th>
+									<th scope="col"> Name </th>
+									<th *ngIf="activeRegion?.regionType === null">Provinces</th>
+									<th *ngIf="activeRegion?.regionType < 1">Districts</th>
+									<th *ngIf="activeRegion?.regionType < 2">Villages</th>
+									<th>SDPs</th>
+									<th>ACTION</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr *ngFor="let subRegion of activeRegion?.subRegions; let i = index">
+									<th scope="row" (click)="openSubRegion(subRegion)">{{(i + 1)}}</th>
+									<td (click)="openSubRegion(subRegion)"><span *ngIf="subRegion?.smallCode" class="fi fi-{{subRegion?.smallCode | lowercase}}"></span> {{subRegion.name}}</td>
+									<td *ngIf="activeRegion?.regionType === null">{{subRegion.provinceCount || 0}}</td>
+									<td *ngIf="activeRegion?.regionType < 1">{{subRegion.districtCount || 0}}</td>
+									<td *ngIf="activeRegion?.regionType < 2">{{subRegion.villageCount || 0}}</td>
+									<td>{{subRegion.sdpCount || 0}}</td>
+									<td (click)="editClicked(formModal, subRegion)">
+										<i data-feather="edit" class="text-primary cursor-pointer"></i>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</div>
+<ng-template #formModal let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" *ngIf="!formData.id.value">{{labels.addModalHeader}}</h4>
+		<h4 class="modal-title" *ngIf="formData.id.value">{{labels.editModalHeader}}</h4>
+		<button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body" tabindex="0" ngbAutofocus>
+		<form [formGroup]="regionForm" (ngSubmit)="onSubmit()">
+      <input type="hidden" formControlName="id"/>
+      <input type="hidden" formControlName="regionType"/>
+      <div class="form-group" *ngIf="activeRegion?.regionType === null">
+        <label class="form-label">Name</label>
+		<ng-select autofocus="" tabindex="1" formControlName="name" [ngClass]="{ 'is-invalid': submitted && formData.name.errors }">
+			<ng-option *ngFor="let subRegion of lookupRegions.lookupRegions" [value]="subRegion.name"><span class="fi fi-{{subRegion?.smallCode | lowercase}}"></span> {{subRegion.name}}</ng-option>
+		</ng-select>
+      </div>
+	  <div class="form-group" *ngIf="activeRegion?.regionType !== null">
+        <label class="form-label">Name</label>
+        <input 
+          	type="text"
+          	formControlName="name"
+          	class="form-control"
+		    [ngClass]="{ 'is-invalid': submitted && formData.name.errors }"
+		    placeholder="Enter Name"
+		    autofocus=""
+		    tabindex="1"/>
+          <div *ngIf="submitted && formData.name.errors" class="invalid-feedback">
+            <div *ngIf="formData.name.errors.required">Name is required</div>
+          </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Latitude</label>
+        <input 
+          	type="number"
+          	formControlName="lat"
+          	class="form-control"
+		  	[ngClass]="{ 'is-invalid': submitted && formData.lat.errors }"
+		    placeholder="XX.XXXXXXX"
+		    autofocus=""
+		    tabindex="1"/>
+		<div *ngIf="submitted && formData.lat.errors" class="invalid-feedback">
+			<div *ngIf="formData.lat.errors.latitude">Invalid latitude value</div>
+		</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Longitude</label>
+        <input 
+          	type="number"
+          	formControlName="long"
+          	class="form-control"
+			[ngClass]="{ 'is-invalid': submitted && formData.long.errors }"
+		    placeholder="XXX.XXXXXXX"
+		    autofocus=""
+		    tabindex="1"/>
+		<div *ngIf="submitted && formData.long.errors" class="invalid-feedback">
+			<div *ngIf="formData.long.errors.longitude">Invalid longitude value</div>
+		</div>
+      </div>
+    </form>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-primary btn-block" (click)="onSubmit()" [disabled]="loading" rippleEffect> 
+      <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>Submit 
+    </button>
+	</div>
+</ng-template>

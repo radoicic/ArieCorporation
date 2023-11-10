@@ -1,0 +1,150 @@
+<div class="content-wrapper container-xxl p-0">
+	<div class="content-body">
+		<!-- content-header component -->
+		<app-content-header [contentHeader]="contentHeader"></app-content-header>
+		<!-- Row Details  Datatables -->
+		<section id="ngx-datatable-row-details">
+			<!-- <core-card> -->
+			<div class="card">
+				<div class="pricing-free-trial">
+					<div class="row">
+						<div class="col-12 col-lg-10 col-lg-offset-3 mx-auto">
+							<div class="pricing-trial-content d-flex justify-content-between">
+								<div class="text-center text-md-left mt-3">
+									<h5>Manage your vaccine inventory in one place. </h5>
+									<ul>
+										<li>Setup multiple manufacturers</li>
+										<li>One click refill option</li>
+										<li>Expiration warning alerts</li>
+									</ul>
+								</div>
+								<img src="assets/images/illustration/inventory2.png" alt="svg img" class="pricing-trial-img img-fluid" style="width: 156px;">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="card">
+				<div class="row">
+					<!-- <div class="col-12 mb-50"><a csvLink  class="btn btn-outline-secondary float-right mr-1" rippleEffect>
+              Export CSV</a
+            ></div> -->
+					<div class="col-md-6 col-12">
+						<div class="d-flex justify-content-between align-items-center m-1">
+							<label class="d-flex align-items-center">Show <select class="form-control mx-25" (change)="onVisibleChange($event.target.value)" [(ngModel)]="basicSelectedOption">
+									<option value="10">10</option>
+									<option value="25">25</option>
+									<option value="50">50</option>
+									<option value="100">100</option>
+								</select> entries </label>
+						</div>
+					</div>
+					<div class="col-md-6 col-12 d-flex justify-content-start justify-content-md-end">
+						<div class="d-flex align-items-center justify-content-end pr-1 pb-1 pb-md-0">
+							<label class="d-flex align-items-center ml-1 ml-md-0">Search <input type="search" placeholder="Search" class="form-control ml-25" (keyup)="filterUpdate($event)" (search)="filterUpdate($event)" />
+							</label>
+							<button class="btn btn-primary ml-1" rippleEffect (click)="addtoggleSidebar()">
+								<i data-feather="plus" class="d-sm-none d-inline-block mr-0 mr-sm-1"></i>
+								<span class="d-none d-sm-inline-block">Add New Record</span>
+							</button>
+						</div>
+					</div>
+				</div>
+        <div class="row spinner-container justify-content-center align-items-center">
+          <div *ngIf="loading" class="spinner-grow text-primary mb-4" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+        
+				<!-- ngx-datatable-row-details -->
+				<ngx-datatable *ngIf="!loading" #tableRowDetails class="bootstrap core-bootstrap" [columnMode]="ColumnMode.force" [headerHeight]="40" [footerHeight]="50" [rowHeight]="58" [limit]="pageSize" (page)="setPage($event)" [rows]="rows" [scrollbarH]="true">
+					<!-- Row Detail Template -->
+					<ngx-datatable-row-detail [rowHeight]="'100%'">
+						<ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+							<div class="ml-75 pt-75" *ngIf="row.vaccineManufacturerData?.length || row.vaccineDoseData?.length">
+								<table class="table table-wrapper-scroll-y my-custom-scrollbar">
+									<thead>
+										<tr>
+											<th scope="col">Manufacturer</th>
+											<th scope="col">LOT</th>
+											<th scope="col">QTY </th>
+											<th scope="col">Dose </th>
+											<th scope="col">Unit </th>
+											<th scope="col">VISedition </th>
+											<th scope="col">Expiration</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr *ngFor="let item of row.vaccineManufacturerData">
+											<td>{{ item.manufacturerName }}</td>
+											<td>{{ item.lot }}</td>
+											<td>{{ item.quantity }}</td>
+											<td>{{ item.dose }}</td>
+											<td>{{ item.unit }}</td>
+											<td>{{ item.visedition | date:'fullDate' }}</td>
+											<td>{{ item.expiration | date:'fullDate' }}</td>
+										</tr>
+									</tbody>
+								</table>
+								<table class="table table-wrapper-scroll-y my-custom-scrollbar">
+									<thead>
+										<tr>
+											<th scope="col">Dose Name</th>
+											<th scope="col">Dose Number</th>
+											<th scope="col">Predicted Start Date</th>
+											<th scope="col">Predicted End Date </th>
+										</tr>
+									</thead>
+									<tbody *ngIf="row.vaccineDoseData?.length">
+										<tr *ngFor="let item of row.vaccineDoseData">
+											<td>{{item.vaccineDoseName}}</td>
+											<td>{{item.doseNo}}</td>
+											<td>{{predictedDateOptionById(item.predictedStartDateId)}}</td>
+											<td>{{predictedDateOptionById(item.predictedEndDateId)}}</td>
+										</tr>
+									</tbody>
+									<tbody *ngIf="!row.vaccineDoseData?.length">
+										<tr class="d-flex justify-content-center">
+											<td colspan="4">No data</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</ng-template>
+					</ngx-datatable-row-detail>
+					<ngx-datatable-column [width]="100" [resizeable]="false" [sortable]="false" [draggable]="false" [canAutoResize]="false">
+						<ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+							<a href="javascript:void(0)" class="text-body" [class.datatable-icon-right]="!expanded" [class.datatable-icon-down]="expanded" title="Expand/Collapse Row" (click)="rowDetailsToggleExpand(row)" *ngIf="row.vaccineManufacturerData"></a>
+						</ng-template>
+					</ngx-datatable-column>
+					<ngx-datatable-column name="Vaccine Name" prop="vaccineCategoryName" [width]="280"></ngx-datatable-column>
+					<ngx-datatable-column name="Actions" [width]="120" [sortable]="false">
+						<ng-template let-row="row" ngx-datatable-cell-template>
+							<div class="d-flex align-items-center">
+								<div ngbDropdown container="body">
+									<a ngbDropdownToggle href="javascript:void(0);" class="hide-arrow" id="dropdownBrowserState" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										<i data-feather="more-vertical" class="text-primary cursor-pointer mr-50"></i>
+									</a>
+									<div ngbDropdownMenu class="dropdown-menu-right" aria-labelledby="dropdownBrowserState">
+										<a href="javascript:void(0)" data-value="false" (click)="edittoggleSidebar(row)" ngbDropdownItem class="d-flex align-items-center">
+											<i data-feather="edit" class="mr-50"></i> Edit </a>
+										<a href="javascript:void(0)" (click)="deleteVaccine(row)" ngbDropdownItem class="d-flex align-items-center">
+											<i data-feather="trash-2" class="mr-50"></i> Delete </a>
+									</div>
+								</div>
+							</div>
+						</ng-template>
+					</ngx-datatable-column>
+				</ngx-datatable>
+				<!-- ngx-datatable-row-details -->
+			</div>
+			<!-- </core-card> -->
+		</section>
+		<!-- Row Details  Datatables -->
+	</div>
+	<!-- New Vaccine Sidebar -->
+	<core-sidebar class="modal modal-lg modal-slide-in sidebar-todo-modal fade" name="new-vaccine-sidebar" overlayClass="modal-backdrop">
+		<app-vaccine-add-edit [isedit]="isEdit" [row]="VaccineCategory" [formOptions]="formOptions" (reload)="getVaccineInventory()"></app-vaccine-add-edit>
+	</core-sidebar>
+	<!--/ New Vaccine Sidebar -->
+</div>

@@ -1,0 +1,17 @@
+// ngx-toastr css
+@import '~ngx-toastr/toastr.css';
+
+// extended toastr scss
+@import '@core/scss/base/plugins/extensions/ext-component-toastr';
+
+.toast-close-button {
+  line-height: 1;
+}
+//! Toastr icon position in small screen fix
+@media (max-width: 480px) and (min-width: 241px) {
+  #toast-container > .toast {
+    &:after {
+      top: 1.44rem;
+    }
+  }
+}

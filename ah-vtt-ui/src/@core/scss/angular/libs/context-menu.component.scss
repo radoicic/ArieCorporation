@@ -1,0 +1,49 @@
+@import '@core/scss/base/bootstrap-extended/include'; // Bootstrap includes
+
+@import '@core/scss/base/plugins/extensions/ext-component-context-menu';
+
+.cdk-overlay-container {
+  position: fixed;
+  z-index: 1000;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.ngx-contextmenu.cdk-overlay-pane {
+  position: absolute;
+  pointer-events: auto;
+  box-sizing: border-box;
+}
+
+.target {
+  user-select: none;
+}
+
+.context-menu-list {
+  list-style-type: none;
+  background-color: $white;
+  cursor: pointer;
+  .context-menu-item {
+    background-color: $white;
+    &.context-menu-submenu {
+      &:after {
+        position: absolute;
+        top: 80%;
+        right: 0.5em;
+        z-index: 1;
+        width: 0;
+        height: 0;
+        content: '';
+        border-color: transparent transparent transparent #2f2f2f;
+        border-style: solid;
+        border-width: 0.25em 0 0.25em 0.25em;
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        -o-transform: translateY(-50%);
+        transform: translateY(-50%);
+      }
+    }
+  }
+}

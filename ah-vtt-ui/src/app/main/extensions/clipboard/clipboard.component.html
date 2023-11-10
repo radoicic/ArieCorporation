@@ -1,0 +1,22 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <!-- content-header component -->
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+
+    <core-card-snippet [snippetCode]="_snippetCodeClipboard">
+      <h4 class="card-title">Clipboard</h4>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-xl-3 col-md-4 col-sm-6 col-12 pr-sm-0">
+            <div class="form-group">
+              <input #clipboardValue type="text" class="form-control" value="Copy Me!" />
+            </div>
+          </div>
+          <div class="col-sm-2 col-12">
+            <button class="btn btn-outline-primary" (click)="copyCode(clipboardValue.value)" rippleEffect>Copy!</button>
+          </div>
+        </div>
+      </div>
+    </core-card-snippet>
+  </div>
+</div>

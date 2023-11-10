@@ -1,0 +1,41 @@
+<ng-container *ngIf="!item.hidden">
+  <!-- collapsible title -->
+  <a
+    class="d-flex align-items-center"
+    [ngClass]="item.classes"
+    [ngClass]="item.type == 'section' ? 'dropdown-toggle nav-link' : 'dropdown-item dropdown-toggle'"
+    *ngIf="!item.url"
+  >
+    <ng-container *ngTemplateOutlet="itemContent"></ng-container>
+  </a>
+
+  <!-- itemContent template -->
+  <ng-template #itemContent>
+    <span [data-feather]="item.icon" *ngIf="item.icon"></span>
+    <span [translate]="item.translate">{{ item.title }}</span>
+  </ng-template>
+
+  <!-- sub-menu item/collapsible -->
+  <ul class="dropdown-menu" [ngClass]="{ show: isShow }">
+    <ng-container *ngFor="let item of item.children">
+      <!-- item -->
+      <li
+        core-menu-horizontal-item
+        *ngIf="item.type == 'item'"
+        [item]="item"
+        [ngClass]="{ disabled: item.disabled === true }"
+        [routerLinkActive]="!item.openInNewTab ? 'active' : ''"
+        [routerLinkActiveOptions]="{ exact: item.exactMatch || false }"
+      >
+        <span [routerLink]="item.openInNewTab ? [] : [item.url]" class="d-none"></span>
+      </li>
+      <!-- collapsible -->
+      <li
+        core-menu-horizontal-collapsible
+        *ngIf="item.type == 'collapsible'"
+        [item]="item"
+        class="dropdown dropdown-submenu"
+      ></li>
+    </ng-container>
+  </ul>
+</ng-container>

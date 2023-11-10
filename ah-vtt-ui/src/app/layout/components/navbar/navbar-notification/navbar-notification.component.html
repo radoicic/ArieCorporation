@@ -1,0 +1,80 @@
+<li ngbDropdown class="nav-item dropdown-notification mr-25">
+  <a class="nav-link" ngbDropdownToggle id="navbarNotificationDropdown"
+    ><i class="ficon" data-feather="bell"></i
+    ><span class="badge badge-pill badge-danger badge-up">{{
+      notifications.messages?.length + notifications.systemMessages?.length
+    }}</span></a
+  >
+  <ul
+    ngbDropdownMenu
+    aria-labelledby="navbarNotificationDropdown"
+    class="dropdown-menu dropdown-menu-media dropdown-menu-right"
+  >
+    <!-- Notifications header -->
+    <li class="dropdown-menu-header">
+      <div class="dropdown-header d-flex">
+        <h4 class="notification-title mb-0 mr-auto">Notifications</h4>
+        <div class="badge badge-pill badge-light-primary">
+          {{ notifications.messages?.length + notifications.systemMessages?.length }} New
+        </div>
+      </div>
+    </li>
+    <!--/ Notifications header -->
+
+    <!-- Notifications content -->
+    <li class="scrollable-container media-list" [perfectScrollbar]>
+      <a class="d-flex" href="javascript:void(0)" *ngFor="let message of notifications.messages">
+        <div class="media d-flex align-items-start">
+          <div class="media-left">
+            <div class="avatar">
+              <img [src]="message.image" alt="avatar" width="32" height="32" />
+            </div>
+          </div>
+          <div class="media-body">
+            <p class="media-heading" [innerHTML]="message.heading"></p>
+            <small class="notification-text">{{ message.text }}</small>
+          </div>
+        </div></a
+      >
+      <div class="media d-flex align-items-center">
+        <h6 class="font-weight-bolder mr-auto mb-0">System Notifications</h6>
+        <div class="custom-control custom-control-primary custom-switch">
+          <input
+            class="custom-control-input"
+            id="systemNotification"
+            type="checkbox"
+            [checked]="notifications.system"
+          />
+          <label class="custom-control-label" for="systemNotification"></label>
+        </div>
+      </div>
+      <a class="d-flex" href="javascript:void(0)" *ngFor="let systemMessage of notifications.systemMessages">
+        <div class="media d-flex align-items-start">
+          <div class="media-left">
+            <div
+              class="avatar"
+              [ngClass]="{
+                'bg-light-danger': systemMessage.icon === 'x',
+                'bg-light-success': systemMessage.icon === 'check',
+                'bg-light-warning': systemMessage.icon === 'alert-triangle'
+              }"
+            >
+              <div class="avatar-content"><i class="avatar-icon" [data-feather]="systemMessage.icon"></i></div>
+            </div>
+          </div>
+          <div class="media-body">
+            <p class="media-heading" [innerHTML]="systemMessage.heading"></p>
+            <small class="notification-text">{{ systemMessage.text }}</small>
+          </div>
+        </div></a
+      >
+    </li>
+    <!--/ Notifications content -->
+
+    <!-- Notifications footer -->
+    <li class="dropdown-menu-footer">
+      <a class="btn btn-primary btn-block" href="javascript:void(0)">Read all notifications</a>
+    </li>
+    <!--/ Notifications footer -->
+  </ul>
+</li>

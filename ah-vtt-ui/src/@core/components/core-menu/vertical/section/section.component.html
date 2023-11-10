@@ -1,0 +1,5 @@
+<ng-container *ngIf="!item.hidden">
+  <span class="navigation-section-text" [translate]="item.translate">{{ item.title }}</span>
+  <!-- More icon in collapsed menu -->
+  <span [data-feather]="'more-horizontal'"></span>
+</ng-container>

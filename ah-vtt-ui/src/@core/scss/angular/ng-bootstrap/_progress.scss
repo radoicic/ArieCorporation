@@ -1,0 +1,16 @@
+// progress
+
+// progress bar background color
+@each $color_name, $color in $colors {
+  @each $color_type, $color_value in $color {
+    @if $color_type== 'base' {
+      ngb-progressbar {
+        &[type='#{$color_name}'] {
+          .progress {
+            background-color: rgba($color_value, 0.1);
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,47 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <!-- content-header component -->
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+
+    <!-- Feather icons section start -->
+    <section id="feather-icons">
+      <div class="row">
+        <div class="col-12">
+          <div class="icon-search-wrapper my-3 mx-auto">
+            <div class="form-group input-group input-group-merge">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i data-feather="search"></i></span>
+              </div>
+              <input
+                type="text"
+                class="form-control"
+                id="icons-search"
+                [(ngModel)]="searchText"
+                placeholder="Search Icons..."
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex flex-wrap" id="icons-container">
+        <div
+          (click)="copy(dat.key)"
+          [id]="i"
+          container="body"
+          placement="top"
+          [ngbTooltip]="dat.key"
+          class="card icon-card cursor-pointer text-center mb-2 mx-50"
+          *ngFor="let dat of data | keyvalue | filter: searchText:'key'; let i = index"
+        >
+          <div class="card-body">
+            <div class="icon-wrapper">
+              <i [data-feather]="dat.key" [size]="24"></i>
+            </div>
+            <p class="icon-name text-truncate mb-0 mt-1">{{ dat.key }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Feather icon-s section end -->
+  </div>
+</div>

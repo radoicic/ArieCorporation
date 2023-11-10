@@ -1,0 +1,45 @@
+@import '@core/scss/base/bootstrap-extended/include'; // Bootstrap includes
+
+// custom icons
+.rating {
+  .fa {
+    color: $warning;
+
+    &.fa-star:before {
+      content: '\f005' !important;
+    }
+  }
+}
+
+// rating sizes
+.rating {
+  font-size: 2rem;
+  color: $warning;
+
+  &.rating-sm {
+    font-size: 1rem;
+  }
+
+  &.rating-lg {
+    font-size: 3rem;
+  }
+}
+
+// custom star
+.custom-star {
+  position: relative;
+  display: inline-block;
+  font-size: 3rem;
+  color: $gray-100;
+}
+
+.custom-full {
+  color: $warning;
+}
+
+.custom-half {
+  position: absolute;
+  display: inline-block;
+  overflow: hidden;
+  color: $warning;
+}

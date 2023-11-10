@@ -1,0 +1,96 @@
+@import '../../scss/base/bootstrap-extended/include'; // Components includes
+@import '../../scss/base/components/include'; // Components includes
+
+// variable declaration
+$touchspin-bg-color: $body-bg;
+$touchspin-dark-bg-color: $theme-dark-body-bg;
+
+$bootstrap-touchspin-width: 8.4rem;
+$bootstrap-touchspin-width-lg: 9.375rem;
+$bootstrap-touchspin-width-sm: 6.25rem;
+
+$bootstrap-touchspin-btn-width: 20px;
+$bootstrap-touchspin-btn-height: 20px;
+$bootstrap-touchspin-btn-width-lg: 24px;
+$bootstrap-touchspin-btn-height-lg: 24px;
+$bootstrap-touchspin-btn-width-sm: 16px;
+$bootstrap-touchspin-btn-height-sm: 16px;
+
+.touchspin-wrapper {
+  width: $bootstrap-touchspin-width;
+
+  .btn-touchspin {
+    z-index: 1;
+    padding: 0;
+    min-width: $bootstrap-touchspin-btn-width;
+    height: $bootstrap-touchspin-btn-height;
+    border-radius: 5px !important;
+    position: relative;
+    top: 4px;
+
+    span {
+      position: relative;
+      top: 1px;
+    }
+    &.btn-touchspin-down {
+      left: 10px;
+    }
+    &.btn-touchspin-up {
+      right: 10px;
+    }
+  }
+
+  .form-control {
+    padding: 5px;
+    height: auto;
+    border-radius: 5px !important;
+    border: 0 !important;
+    background-color: $touchspin-bg-color;
+    text-align: center;
+    font-weight: 500;
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+  &.touchspin-lg {
+    width: $bootstrap-touchspin-width-lg;
+
+    .btn-touchspin {
+      min-width: $bootstrap-touchspin-btn-width-lg;
+      height: $bootstrap-touchspin-btn-height-lg;
+      top: 5px;
+    }
+
+    .form-control {
+      padding: 9px;
+      height: auto;
+    }
+  }
+
+  &.touchspin-sm {
+    width: $bootstrap-touchspin-width-sm;
+
+    .btn-touchspin {
+      min-width: $bootstrap-touchspin-btn-width-sm;
+      height: $bootstrap-touchspin-btn-height-sm;
+      top: 4px;
+    }
+
+    .form-control {
+      padding: 2px;
+      height: auto;
+    }
+  }
+}
+
+// dark layout style
+
+.dark-layout {
+  .touchspin-wrapper {
+    .form-control {
+      background-color: $touchspin-dark-bg-color;
+    }
+  }
+}

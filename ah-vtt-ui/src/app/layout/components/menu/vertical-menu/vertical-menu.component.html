@@ -1,0 +1,37 @@
+<!-- Menu header -->
+<div class="navbar-header">
+  <ul class="nav navbar-nav flex-row">
+    <li class="nav-item mr-auto">
+      <!-- App Branding -->
+      <a class="navbar-brand" [routerLink]="['/']">
+        <span class="brand-logo">
+          <img src="{{ coreConfig.app.appLogoImage }}" alt="brand-logo" />
+        </span>
+        <h2 class="brand-text mb-0">{{ coreConfig.app.appName }}</h2>
+      </a>
+    </li>
+
+    <!-- Menu Toggler -->
+    <li class="nav-item nav-toggle">
+      <a class="nav-link modern-nav-toggle d-none d-xl-block pr-0" (click)="toggleSidebarCollapsible()">
+        <i
+          [ngClass]="isCollapsed === true ? 'icon-circle' : 'icon-disc'"
+          class="toggle-icon feather font-medium-4 collapse-toggle-icon text-primary"
+        ></i>
+      </a>
+      <a class="nav-link modern-nav-toggle d-block d-xl-none pr-0" (click)="toggleSidebar()">
+        <i data-feather="x" class="font-medium-4 text-primary toggle-icon"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+<!--/ Menu header -->
+
+<!-- Navbar shadow -->
+<div class="shadow-bottom" [ngClass]="{ 'd-block': isScrolled }"></div>
+
+<!-- Main menu -->
+<div class="main-menu-content" [perfectScrollbar] (scroll)="onSidebarScroll()">
+  <ul class="navigation navigation-main" layout="vertical" core-menu></ul>
+</div>
+<!--/ Main menu -->

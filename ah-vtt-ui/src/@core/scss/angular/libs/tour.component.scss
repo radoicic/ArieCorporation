@@ -1,0 +1,18 @@
+// vendor css
+@import '~shepherd.js/dist/css/shepherd.css';
+@import '@core/scss/base/bootstrap-extended/include'; // Bootstrap includes
+
+// extended tour scss
+@import '@core/scss/base/plugins/extensions/ext-component-tour.scss';
+
+.shepherd-content {
+  .shepherd-button {
+    border-radius: 0.358rem;
+  }
+}
+
+.btn-outline-primary {
+  border: 1px solid $primary;
+  background-color: transparent;
+  color: $primary;
+}

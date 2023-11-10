@@ -1,0 +1,134 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <!-- content-header component -->
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+
+    <!-- Tree Basic Async -->
+    <section id="tree-basic-async">
+      <div class="row match-height">
+        <div class="col-12 col-md-6">
+          <core-card-snippet [snippetCode]="_snippetCodeBasic">
+            <h4 class="card-title">Basic</h4>
+            <div class="card-body">
+              <p class="card-text">Use <code>tree-root</code>component to get basic tree view.</p>
+              <tree-root [ngClass]="'tree-wrapper'" [nodes]="nodesBasic" [options]="optionsBasic"></tree-root>
+            </div>
+          </core-card-snippet>
+        </div>
+        <div class="col-12 col-md-6">
+          <core-card-snippet [snippetCode]="_snippetCodeAsync">
+            <h4 class="card-title">Async</h4>
+            <div class="card-body">
+              <p class="card-text">
+                The tree allows to load children asynchronously using <code>getChildren</code>option, and
+                <code>hasChildren</code>field on the node.
+              </p>
+              <tree-root
+                [ngClass]="'tree-wrapper tree-checkbox'"
+                [options]="optionsAsync"
+                [nodes]="nodesAsync"
+              ></tree-root>
+            </div>
+          </core-card-snippet>
+        </div>
+      </div>
+    </section>
+    <!--/ Tree Basic Async -->
+
+    <!-- Tree Filter Darg Drop -->
+    <section id="tree-filter-darg-drop">
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <core-card-snippet [snippetCode]="_snippetCodeFilter">
+            <h4 class="card-title">Filter</h4>
+            <div class="card-body">
+              <p class="card-text">Use treeModel <code>filterNodes</code>function to filter tree view branches.</p>
+              <label id="tree-filter">Filter</label>
+              <div class="input-group mb-1">
+                <input
+                  class="form-control form-control-sm"
+                  id="tree-filter"
+                  #filter
+                  (keyup)="treeFilter.treeModel.filterNodes(filter.value)"
+                  placeholder="filter nodes"
+                />
+                <div class="input-group-append">
+                  <button
+                    class="btn btn-sm btn-primary"
+                    (click)="treeFilter.treeModel.clearFilter(); filter.value = ''"
+                    rippleEffect
+                  >
+                    Clear Filter
+                  </button>
+                </div>
+              </div>
+              <tree-root
+                #treeFilter
+                [ngClass]="'tree-wrapper tree-checkbox'"
+                [focused]="true"
+                [options]="optionsFilter"
+                [nodes]="nodesFilter"
+              ></tree-root
+              ><label class="mt-1" id="tree-fuzzy-filter">Filter By Function (Fuzzy Search)</label
+              ><input
+                class="form-control form-control-sm"
+                id="tree-fuzzy-filter"
+                #filter3
+                (keyup)="filterFn(filter3.value, treeFilter.treeModel)"
+                placeholder="filter nodes by fuzzy search"
+              />
+            </div>
+          </core-card-snippet>
+        </div>
+        <div class="col-12 col-md-6">
+          <core-card-snippet [snippetCode]="_snippetCodeDargDrop">
+            <h4 class="card-title">Darg Drop</h4>
+            <div class="card-body">
+              <p class="card-text">Allowing to drag only leaf nodes; <code>ctrl-drag</code>to copy.</p>
+              <tree-root
+                [ngClass]="'tree-wrapper'"
+                [state]="stateDragDrop"
+                [options]="optionsDragDrop"
+                [focused]="true"
+                [nodes]="nodesDragDrop"
+              ></tree-root>
+            </div>
+          </core-card-snippet>
+        </div>
+      </div>
+    </section>
+    <!--/ Tree Filter Darg Drop -->
+
+    <!-- Tree Checkbox -->
+    <section id="tree-checkbox">
+      <div class="row">
+        <div class="col-12">
+          <core-card-snippet [snippetCode]="_snippetCodeCheckbox">
+            <h4 class="card-title">Checkbox</h4>
+            <div class="card-body">
+              <p class="card-text">
+                You can specify <code>useCheckbox</code>option to show checkboxes, and the tree selection APIs to
+                control and access which node is currently selected.
+              </p>
+              <h6 class="my-1">Tri-state checkboxes</h6>
+              <tree-root
+                id="tree1"
+                [ngClass]="'tree-wrapper tree-checkbox'"
+                [nodes]="nodesCheckbox"
+                [options]="optionsCheckbox"
+              ></tree-root>
+              <h6 class="my-1">Disable tri-state checkboxes</h6>
+              <tree-root
+                id="tree3"
+                [ngClass]="'tree-wrapper tree-checkbox'"
+                [nodes]="nodesCheckbox"
+                [options]="optionsDisabledCheckbox"
+              ></tree-root>
+            </div>
+          </core-card-snippet>
+        </div>
+      </div>
+    </section>
+    <!--/ Tree Checkbox -->
+  </div>
+</div>

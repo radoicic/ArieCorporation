@@ -1,0 +1,34 @@
+@import '@core/scss/base//bootstrap-extended/include'; // Components includes
+@import '~bs-stepper/dist/css/bs-stepper.min.css';
+@import '@core/scss/base/plugins/forms/form-wizard';
+@import '@core/scss/angular/libs/select.component.scss';
+
+.card-body {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 0.6rem;
+    padding-bottom: 0.5rem;
+}
+
+.pricing-trial-img {
+    margin-top: -4%;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 0.5rem 0.5rem;
+    font-size: 85%;
+    font-weight: 600;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.358rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, background 0s, border 0s;
+}
+
+.card .card-title {
+    font-weight: 500;
+    font-size: 1rem;
+    margin-bottom: 1.53rem;
+}

@@ -1,0 +1,18 @@
+// Perfect scrollbar
+@import '~perfect-scrollbar/css/perfect-scrollbar';
+@import '~node-waves/src/scss/waves.scss';
+
+// Core styles
+@import './base/bootstrap';
+@import './base/bootstrap-extended';
+@import './base/colors';
+@import './base/components';
+@import './base/themes/dark-layout';
+@import './base/themes/bordered-layout';
+@import './base/themes/semi-dark-layout';
+@import './base/core/colors/palette-gradient';
+@import './base/flag-icons/flag-icons';
+@import './base/plugins/forms/form-validation'; // Added for form validation style support
+
+// Vue Specific
+@import './angular/index';

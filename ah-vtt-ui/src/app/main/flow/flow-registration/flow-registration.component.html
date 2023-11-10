@@ -1,0 +1,229 @@
+<div class="content-wrapper container-xxl p-0">
+    <div class="content-body">
+      <app-content-header [contentHeader]="contentHeader" (settingClicked)="handleContextAction($event)"></app-content-header>
+    
+      <div class="card">
+        <div class="pricing-free-trial">
+          <div class="row">
+            <div class="col-12 col-lg-10 col-lg-offset-3 mx-auto">
+              <div class="pricing-trial-content d-flex justify-content-between">
+                <div class="text-center text-md-left mt-3">										
+               
+                <h5>Record flow information for travelers and children. </h5>
+                <ul>
+                  <li>Seamlessly record travel information like from to to destinations</li>
+                  <li>Automatic vaccine alerts for overdue vaccines</li>
+                </ul>
+                </div><img src="assets/images/illustration/flow-registry.png"
+                  alt="svg img" class="pricing-trial-img img-fluid" style="width: 174px;">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <section>
+        <div class="col-md-12 col-xl-12">
+        <div class="card shadow-none bg-transparent border-primary" style="margin-bottom: 10px;" *ngIf="context.sdpId">
+          <div class="card-body">
+            <span class="card-title"><img src="assets/images/icons/map.svg"
+              alt="svg img" style="width: 24px;"> &nbsp;Current SDP</span>&nbsp;
+              <span class="badge badge-success">{{sdpContextName}}</span>              
+          </div>  
+        </div>
+        <div class="card shadow-none bg-transparent border-primary" style="margin-bottom: 10px;" *ngIf="!context.sdpId">
+          <div class="card-body">
+              <span class="card-title"><img src="assets/images/icons/map.svg"
+                alt="svg img" style="width: 24px;"> &nbsp;Current SDP</span>&nbsp;
+              <span class="badge badge-danger">-- No SDP Selected --</span>  
+                 
+          </div>
+        </div>
+        
+        </div>
+        
+      </section>
+        <section class="vertical-wizard">
+            <div id="stepper2" class="bs-stepper vertical vertical-wizard-example">
+              <div class="bs-stepper-header">
+                <div [class]="{step: true, active: step === 'guardian'}">
+                  <button type="button" class="step-trigger" (click)="navigateToIndex(0)">
+                    <span class="bs-stepper-box">1</span>
+                    <span class="bs-stepper-label">
+                      <span class="bs-stepper-title">Traveler</span>
+                      <span class="bs-stepper-subtitle">Fill Traveler Information</span>
+                    </span>
+                  </button>
+                </div>
+                <div [class]="{step: true, active: step === 'child'}">
+                  <button type="button" class="step-trigger" (click)="navigateToIndex(1)">
+                    <span class="bs-stepper-box">2</span>
+                    <span class="bs-stepper-label">
+                      <span class="bs-stepper-title">Child</span>
+                      <span class="bs-stepper-subtitle">Fill Child Information</span>
+                    </span>
+                  </button>
+                </div>
+                <div [class]="{step: true, active: step === 'travel'}">
+                  <button type="button" class="step-trigger" (click)="navigateToIndex(2)">
+                    <span class="bs-stepper-box">3</span>
+                    <span class="bs-stepper-label">
+                      <span class="bs-stepper-title">Travel</span>
+                      <span class="bs-stepper-subtitle">Add Travel Information</span>
+                    </span>
+                  </button>
+                </div>
+                <div [class]="{step: true, active: step === 'vaccine'}">
+                  <button type="button" class="step-trigger" (click)="navigateToIndex(3)">
+                    <span class="bs-stepper-box">4</span>
+                    <span class="bs-stepper-label">
+                      <span class="bs-stepper-title">Vaccine</span>
+                      <span class="bs-stepper-subtitle">Add Vaccine Information</span>
+                    </span>
+                  </button>
+                </div>
+              </div>
+              <div class="bs-stepper-content">
+                <app-guardian-form 
+                  *ngIf="step==='guardian'"
+                  (next)="next()"
+                  (draftIdUpdated)="draftIdUpdated($event)"
+                  [guardianFormData]="flowData.guardianInformation"
+                  [sdpId]="context.sdpId"
+                  [draftId]="context.draftId"
+                  [wizardStep]="0"
+                  [countryOptions]="countryOptions"
+                  [sexOptions]="sexOptions">
+                </app-guardian-form>
+                <app-child-form 
+                  *ngIf="step==='child'"
+                  (previous)="previous()"
+                  (next)="next()"
+                  (draftIdUpdated)="draftIdUpdated($event)"
+                  [childFormData]="flowData.childInformation"
+                  [sdpId]="context.sdpId"
+                  [draftId]="context.draftId"
+                  [wizardStep]="1"
+                  [countryOptions]="countryOptions"
+                  [sexOptions]="sexOptions">
+                </app-child-form>
+                <app-travel-form
+                  *ngIf="step==='travel'"
+                  (previous)="previous()"
+                  (next)="next()"
+                  (draftIdUpdated)="draftIdUpdated($event)"
+                  [sdpId]="context.sdpId"
+                  [draftId]="context.draftId"
+                  [wizardStep]="2"
+                  [countryOptions]="countryOptions"
+                  [modeOfTransportOptions]="modeOfTransportOptions">
+                </app-travel-form>
+                <app-vaccine-form 
+                  *ngIf="step==='vaccine'"
+                  (previous)="previous()"
+                  (saveAndSubmit)="saveAndSubmit()"
+                  (draftIdUpdated)="draftIdUpdated($event)"
+                  [sdpId]="context.sdpId"
+                  [draftId]="context.draftId"
+                  [wizardStep]="3">
+                </app-vaccine-form>
+              </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<ng-template #sdpFormModal>
+	<div class="modal-header">
+		<h4 class="modal-title">Pick SDP</h4>
+		<button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body" tabindex="0" ngbAutofocus>
+		<form [formGroup]="sdpForm">
+      <div class="form-group">
+        <label class="form-label">SDP</label>
+        <ng-select 
+            [items]="sdpOptions"
+            bindLabel="name"
+            bindValue="id"
+            formControlName="sdpId">
+        </ng-select>
+        <div *ngIf="submitted && sdpFormData.sdpId.errors" class="invalid-feedback">
+          <div *ngIf="formData.sdpId.errors.required">SDP is required</div>
+        </div>
+      </div>
+    </form>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-primary btn-block" (click)="setSdpContext()" [disabled]="loading" rippleEffect> 
+      <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>Submit 
+    </button>
+	</div>
+</ng-template>
+
+<ng-template #draftPickerModal>
+	<div class="modal-header">
+		<h4 class="modal-title">Pick Draft</h4>
+		<button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body" tabindex="0" ngbAutofocus>
+    <div class="row" id="table-without-card">
+      <div class="col-12 my-2">
+        <div class="card">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Draft Id</th>
+                  <th>Saved At</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <ng-template ngFor let-draft [ngForOf]="drafts" let-i="index">
+                    <tr>
+                    <td>
+                      {{i + 1}}
+                    </td>
+                    <td>
+                      {{draft.draftId}}
+                    </td>
+                    <td>
+                      {{draft.lastSavedAtUtc | date: 'full' }}
+                    </td>
+                    <td class="overflow-hidden">
+                      <div ngbDropdown container="body">
+                        <button type="button" class="btn btn-sm hide-arrow" ngbDropdownToggle data-toggle="dropdown">
+                          <i data-feather="more-vertical"></i>
+                        </button>
+                        <div ngbDropdownMenu>
+                          <a ngbDropdownItem href="javascript:void(0);" (click)="onOpenDraft(draft.draftId)">
+                            <i data-feather="book-open" class="mr-50"></i>
+                            <span>Open</span>
+                          </a>
+                          <a ngbDropdownItem href="javascript:void(0);">
+                            <i data-feather="trash" class="mr-50"></i>
+                            <span>Delete</span>
+                          </a>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  </ng-template>
+                
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+	</div>
+	<div class="modal-footer">
+		<p>Changes to the draft you were working on (if any) will be automatically saved here.</p>
+	</div>
+</ng-template> 

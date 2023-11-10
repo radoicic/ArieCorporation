@@ -1,0 +1,28 @@
+@import '@core/scss/base/bootstrap-extended/include'; // Bootstrap includes
+
+// ng-block-ui
+.block-ui-wrapper {
+  background: rgba($black, 0.5) !important;
+  opacity: 0;
+  display: block !important;
+  visibility: hidden;
+  transition: all 0.1s linear;
+
+  .block-ui-template {
+    top: 50% !important;
+    text-align: center;
+    color: $white !important;
+  }
+
+  .block-ui-spinner {
+    top: 50% !important;
+    .loader {
+      font-size: 3px;
+    }
+  }
+  &.active {
+    opacity: 1;
+    transition: all 0.1s linear;
+    visibility: visible;
+  }
+}

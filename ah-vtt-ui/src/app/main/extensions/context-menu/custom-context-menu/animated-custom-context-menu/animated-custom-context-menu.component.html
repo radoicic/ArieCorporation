@@ -1,0 +1,6 @@
+<!-- Animated Custom Context Menu Component -->
+<ul class="context-menu-list" style="position: relative" [@menu]="_state" (@menu.done)="_onAnimationDone($event)">
+  <li class="context-menu-item" (click)="handleClick('Option 1')">Option 1</li>
+  <li class="context-menu-item" (click)="handleClick('Option 2')">Option 2</li>
+</ul>
+<!--/ Animated Custom Context Menu Component -->

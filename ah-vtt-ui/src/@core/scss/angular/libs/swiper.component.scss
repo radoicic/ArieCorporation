@@ -1,0 +1,44 @@
+@import '~swiper/swiper-bundle.css';
+@import '@core/scss/base/plugins/extensions/ext-component-swiper';
+
+.swiper-button-prev {
+  &:after {
+    content: '' !important;
+  }
+}
+
+.swiper-button-next {
+  &:after {
+    content: '' !important;
+  }
+}
+
+/* cube effect */
+.swiper-cube-effect {
+  &.swiper-container {
+    width: 300px;
+    left: 0%;
+    margin-left: -150px;
+    margin-top: -12px;
+
+    .swiper {
+      &.s-wrapper {
+        width: 300px;
+      }
+    }
+  }
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  width: 38px !important;
+}
+
+.swiper-coverflow.swiper-container .swiper-slide {
+  width: 300px !important;
+}
+
+//!Fix: cursor pagination handle
+swiper > .swiper.s-wrapper .swiper-pagination .swiper-pagination-handle {
+  cursor: default !important;
+}

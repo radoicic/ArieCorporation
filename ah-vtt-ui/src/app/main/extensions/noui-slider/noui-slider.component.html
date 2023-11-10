@@ -1,0 +1,408 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <!-- content-header component -->
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+
+    <!-- Bootstrap Sliders -->
+    <section id="bootstrap-slider">
+      <div class="row">
+        <div class="col-12">
+          <core-card-snippet [snippetCode]="_snippetCodeBootstrapSlider">
+            <h4 class="card-title">Default Bootstrap 4 slider</h4>
+
+            <div class="card-body">
+              <div class="form-group">
+                <label for="basic-range">Default</label>
+                <input type="range" class="form-control-range" id="basic-range" />
+              </div>
+              <div class="form-group">
+                <label for="disabled-range">Disabled</label>
+                <input type="range" class="form-control-range" id="disabled-range" disabled />
+              </div>
+            </div>
+          </core-card-snippet>
+        </div>
+      </div>
+    </section>
+    <!-- /Bootstrap Sliders -->
+
+    <!-- noUiSlider Single handle & steps -->
+    <section>
+      <div class="row">
+        <div class="col-12">
+          <core-card-snippet [snippetCode]="_snippetCodeSliderSliderValues">
+            <h4 class="card-title">Slider Values</h4>
+            <div class="card-body">
+              <h5 class="mb-2">Handles</h5>
+              <nouislider
+                [min]="0"
+                [max]="100"
+                [step]="2"
+                [connect]="false"
+                [(ngModel)]="sliderSingleHandelValue"
+              ></nouislider>
+
+              <h5 class="my-2">Snapping between steps</h5>
+              <nouislider
+                [connect]="true"
+                [min]="0"
+                [max]="100"
+                [step]="10"
+                [(ngModel)]="sliderStepsValue"
+              ></nouislider>
+            </div>
+          </core-card-snippet>
+        </div>
+      </div>
+    </section>
+    <!-- noUiSlider Single handle & steps -->
+
+    <!-- noUiSlider tap & drag -->
+    <section>
+      <div class="row match-height">
+        <div class="col-12 col-lg-6">
+          <core-card-snippet [snippetCode]="_snippetCodeSliderTap">
+            <h4 class="card-title">Slider Tap</h4>
+            <div class="card-body">
+              <nouislider
+                [min]="10"
+                [connect]="true"
+                [behaviour]="'tap'"
+                [max]="50"
+                [step]="0.05"
+                [(ngModel)]="sliderTapValue"
+              ></nouislider>
+            </div>
+          </core-card-snippet>
+        </div>
+
+        <div class="col-12 col-lg-6">
+          <core-card-snippet [snippetCode]="_snippetCodeSliderLimit">
+            <h4 class="card-title">Slider Limit</h4>
+            <div class="card-body">
+              <nouislider [connect]="true" [min]="0" [max]="100" [limit]="40" [step]="2" [(ngModel)]="sliderLimitValue">
+              </nouislider>
+            </div>
+          </core-card-snippet>
+        </div>
+      </div>
+    </section>
+    <!-- noUiSlider tap & drag -->
+
+    <!-- noUiSlider Tooltip  -->
+    <section>
+      <div class="row match-height">
+        <div class="col-12 col-lg-6">
+          <core-card-snippet [snippetCode]="_snippetCodeSliderWithNgModel">
+            <h4 class="card-title">Slider With NgModel</h4>
+            <div class="card-body">
+              <nouislider
+                [min]="10"
+                [connect]="'lower'"
+                [behaviour]="'tap'"
+                [max]="50"
+                [step]="0.05"
+                [(ngModel)]="sliderWithNgModel"
+              ></nouislider>
+              <p>Value : {{ sliderWithNgModel }}</p>
+            </div>
+          </core-card-snippet>
+        </div>
+
+        <div class="col-12 col-lg-6">
+          <core-card-snippet [snippetCode]="_snippetCodeSliderTooltip">
+            <h4 class="card-title">Slider Tooltip</h4>
+            <div class="card-body">
+              <nouislider
+                [connect]="true"
+                [ngClass]="'mt-3'"
+                [behaviour]="'drag'"
+                [tooltips]="true"
+                [min]="0"
+                [max]="100"
+                [limit]="40"
+                [step]="2"
+                [(ngModel)]="sliderTooltipValue"
+              ></nouislider>
+            </div>
+          </core-card-snippet>
+        </div>
+      </div>
+    </section>
+    <!-- noUiSlider Tooltip  -->
+    <!-- noUiSlider Scale / Pipes & Tooltip  -->
+    <section>
+      <div class="row">
+        <div class="col-12">
+          <core-card-snippet [snippetCode]="_snippetCodeSliderScalePipes">
+            <h4 class="card-title">Slider Scale / Pipes</h4>
+            <div class="card-body">
+              <!-- noUiSlider Scale / Pipes -->
+              <nouislider
+                [config]="configSliderScalePipes"
+                [(ngModel)]="sliderScalePipesValue"
+                [ngClass]="'mb-3'"
+              ></nouislider>
+            </div>
+          </core-card-snippet>
+        </div>
+      </div>
+    </section>
+    <!-- noUiSlider Scale / Pipes & Tooltip  -->
+
+    <!-- noUiSlider Slider Colors - Handles -->
+    <section>
+      <div class="row">
+        <div class="col-12">
+          <core-card-snippet [snippetCode]="_snippetCodeSliderColors">
+            <h4 class="card-title">Slider Colors - Handles</h4>
+            <div class="card-body">
+              <h5 class="mt-2 mb-3">Default / Primary Color Slider</h5>
+              <nouislider
+                [connect]="true"
+                [tooltips]="true"
+                [config]="configSliderDefault0"
+                [(ngModel)]="sliderDefault0"
+                [ngClass]="'mb-4'"
+              ></nouislider>
+
+              <h5 class="mt-2 mb-3">Secondary Color Slider</h5>
+              <nouislider
+                [connect]="true"
+                [tooltips]="true"
+                [config]="configSliderSecondary0"
+                [(ngModel)]="sliderSecondary0"
+                [ngClass]="'slider-secondary mb-4'"
+              ></nouislider>
+
+              <h5 class="mt-2 mb-3">Success Color Slider</h5>
+              <nouislider
+                [connect]="true"
+                [tooltips]="true"
+                [config]="configSliderSuccess0"
+                [(ngModel)]="sliderSuccess0"
+                [ngClass]="'slider-success mb-4'"
+              ></nouislider>
+
+              <h5 class="mt-2 mb-3">Warning Color Slider</h5>
+              <nouislider
+                [connect]="true"
+                [tooltips]="true"
+                [config]="configSliderWarning0"
+                [(ngModel)]="sliderWarning0"
+                [ngClass]="'slider-warning mb-4'"
+              ></nouislider>
+
+              <h5 class="mt-2 mb-3">Danger Color Slider</h5>
+              <nouislider
+                [connect]="true"
+                [tooltips]="true"
+                [config]="configSliderDanger0"
+                [(ngModel)]="sliderDanger0"
+                [ngClass]="'slider-danger mb-4'"
+              ></nouislider>
+
+              <h5 class="mt-2 mb-3">Info Color Slider</h5>
+              <nouislider
+                [connect]="true"
+                [tooltips]="true"
+                [config]="configSliderInfo0"
+                [(ngModel)]="sliderInfo0"
+                [ngClass]="'slider-info mb-4'"
+              ></nouislider>
+            </div>
+          </core-card-snippet>
+        </div>
+      </div>
+    </section>
+    <!-- noUiSlider Slider Colors - Handles -->
+
+    <!-- noUiSlider Input with tooltip  -->
+    <section>
+      <div class="row">
+        <div class="col-12">
+          <core-card-snippet [snippetCode]="_snippetCodeSliderInput">
+            <h4 class="card-title">Slider With Input</h4>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-4 col-md-2">
+                  <p>Initial Value:</p>
+                  <div class="btn-group">
+                    <button
+                      class="btn btn-sm btn-primary font-weight-bold font-medium-1"
+                      (click)="sliderInputChange(0, -1)"
+                      rippleEffect
+                    >
+                      -1
+                    </button>
+                    <button
+                      class="btn btn-sm btn-primary font-weight-bold font-medium-1"
+                      (click)="sliderInputChange(0, 1)"
+                      rippleEffect
+                    >
+                      +1
+                    </button>
+                  </div>
+                </div>
+                <div class="col-4 col-md-2">
+                  <p>Final Value:</p>
+                  <div class="btn-group">
+                    <button
+                      class="btn btn-sm btn-primary font-weight-bold font-medium-1"
+                      (click)="sliderInputChange(1, -1)"
+                      rippleEffect
+                    >
+                      -1
+                    </button>
+                    <button
+                      class="btn btn-sm btn-primary font-weight-bold font-medium-1"
+                      (click)="sliderInputChange(1, 1)"
+                      rippleEffect
+                    >
+                      +1
+                    </button>
+                  </div>
+                </div>
+                <div class="col-4 col-md-2">
+                  <p>Disable:</p>
+                  <button
+                    class="btn btn-sm btn-danger font-medium-1"
+                    [ngClass]="disabled ? 'disabled' : null"
+                    (click)="disabled = !disabled"
+                    rippleEffect
+                  >
+                    Disable
+                  </button>
+                </div>
+                <div class="mt-2 mt-md-0 col-6 col-md-3">
+                  <p>Initial select:</p>
+                  <select
+                    [disabled]="disabled"
+                    class="form-control"
+                    [(ngModel)]="SelectValueInitial"
+                    (change)="onSelectChange()"
+                  >
+                    <option *ngFor="let sliderSelectValue of sliderSelectValues" [value]="sliderSelectValue">
+                      {{ sliderSelectValue }}
+                    </option>
+                  </select>
+                </div>
+                <div class="mt-2 mt-md-0 col-6 col-md-3">
+                  <p>Final Select:</p>
+                  <select
+                    [disabled]="disabled"
+                    class="form-control"
+                    [(ngModel)]="SelectValueFinal"
+                    (change)="onSelectChange()"
+                  >
+                    <option *ngFor="let sliderSelectValue of sliderSelectValues" [value]="sliderSelectValue">
+                      {{ sliderSelectValue }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+              <nouislider
+                [connect]="true"
+                [behaviour]="'drag'"
+                [tooltips]="true"
+                [min]="0"
+                [max]="20"
+                [step]="1"
+                [(ngModel)]="sliderInputValue"
+                [disabled]="disabled"
+                [ngClass]="'mt-3'"
+              ></nouislider>
+            </div>
+          </core-card-snippet>
+        </div>
+      </div>
+    </section>
+    <!-- noUiSlider Input with tooltip  -->
+
+    <!-- noUiSlider Vertical Slides -->
+    <section>
+      <div class="row">
+        <div class="col-12">
+          <h4 class="text-uppercase">Vertical Sliders</h4>
+        </div>
+        <div class="col-12 col-md-6">
+          <core-card-snippet [snippetCode]="_snippetCodeVerticalSingleHandle">
+            <h4 class="card-title">Single Handle</h4>
+            <div class="card-body">
+              <div class="text-center">
+                <nouislider
+                  [min]="0"
+                  [max]="100"
+                  [step]="5"
+                  [config]="configVerticalSingleHandle"
+                  [ngClass]="'noUi-vertical'"
+                  [(ngModel)]="verticalSingleHandleValue0"
+                ></nouislider>
+              </div>
+            </div>
+          </core-card-snippet>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <core-card-snippet [snippetCode]="_snippetCodeVerticalUpper">
+            <h4 class="card-title">Connect to upper</h4>
+            <div class="card-body">
+              <div class="text-center">
+                <nouislider
+                  [min]="0"
+                  [max]="100"
+                  [step]="5"
+                  [config]="configVerticalUpper"
+                  [connect]="'upper'"
+                  [ngClass]="'noUi-vertical'"
+                  [(ngModel)]="verticalUpperValue0"
+                ></nouislider>
+              </div>
+            </div>
+          </core-card-snippet>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <core-card-snippet [snippetCode]="_snippetCodeVerticalTooltip">
+            <h4 class="card-title">Tooltips</h4>
+            <div class="card-body">
+              <div class="text-center">
+                <nouislider
+                  [min]="0"
+                  [max]="100"
+                  [step]="0.05"
+                  [config]="configVerticalTooltip"
+                  [tooltips]="true"
+                  [connect]="false"
+                  [ngClass]="'noUi-vertical'"
+                  [(ngModel)]="verticalTooltipValue0"
+                ></nouislider>
+              </div>
+            </div>
+          </core-card-snippet>
+        </div>
+        <div class="col-12 col-md-6">
+          <core-card-snippet [snippetCode]="_snippetCodeVerticalLimit">
+            <h4 class="card-title">Limit</h4>
+            <div class="card-body">
+              <div class="text-center">
+                <nouislider
+                  [min]="0"
+                  [max]="100"
+                  [step]="5"
+                  [limit]="40"
+                  [config]="configVerticalLimit"
+                  [connect]="true"
+                  [ngClass]="'noUi-vertical'"
+                  [(ngModel)]="verticalLimitValue0"
+                ></nouislider>
+              </div>
+            </div>
+          </core-card-snippet>
+        </div>
+      </div>
+    </section>
+    <!-- noUiSlider Vertical Slides -->
+  </div>
+</div>

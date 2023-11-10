@@ -1,0 +1,898 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+
+    <!-- Card Advance -->
+    <div class="row match-height">
+      <!-- Congratulations Card -->
+      <div class="col-12 col-md-6 col-lg-7">
+        <div class="card card-congratulations">
+          <div class="card-body text-center">
+            <img src="assets/images/elements/decore-left.png" class="congratulations-img-left" alt="card-img-left" />
+            <img src="assets/images/elements/decore-right.png" class="congratulations-img-right" alt="card-img-right" />
+            <div class="avatar avatar-xl bg-primary shadow">
+              <div class="avatar-content">
+                <i data-feather="award" class="font-large-1"></i>
+              </div>
+            </div>
+            <div class="text-center">
+              <h1 class="mb-1 text-white">Congratulations John,</h1>
+              <p class="card-text m-auto w-75">
+                You have done <strong>57.6%</strong> more sales today. Check your new badge in your profile.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/ Congratulations Card -->
+
+      <!-- Medal Card -->
+      <div class="col-12 col-md-6 col-lg-5">
+        <div class="card card-congratulation-medal">
+          <div class="card-body">
+            <h5>Congratulations 🎉 John!</h5>
+            <p class="card-text font-small-3">You have won gold medal</p>
+            <h3 class="mb-75 mt-4">
+              <a href="javascript:void(0);">$48.9k</a>
+            </h3>
+            <button type="button" class="btn btn-primary" rippleEffect>View Sales</button>
+            <img src="assets/images/illustration/badge.svg" class="congratulation-medal" alt="Medal Pic" />
+          </div>
+        </div>
+      </div>
+      <!--/ Medal Card -->
+    </div>
+
+    <div class="row match-height">
+      <!-- Employee Task Card -->
+      <div class="col-lg-4 col-md-6 col-12">
+        <div class="card card-employee-task">
+          <div class="card-header">
+            <h4 class="card-title">Employee Task</h4>
+            <i data-feather="more-vertical" class="font-medium-3 cursor-pointer"></i>
+          </div>
+          <div class="card-body">
+            <div class="employee-task d-flex justify-content-between align-items-center">
+              <div class="media">
+                <div class="avatar mr-75">
+                  <img
+                    src="assets/images/portrait/small/avatar-s-9.jpg"
+                    class="rounded"
+                    width="42"
+                    height="42"
+                    alt="Avatar"
+                  />
+                </div>
+                <div class="media-body my-auto">
+                  <h6 class="mb-0">Ryan Harrington</h6>
+                  <small>iOS Developer</small>
+                </div>
+              </div>
+              <div class="d-flex align-items-center">
+                <small class="text-muted mr-75">9hr 20m</small>
+                <div class="employee-task-chart-primary-1">
+                  <apx-chart
+                    [chart]="employeePrimaryChartoptions.chart"
+                    [grid]="employeePrimaryChartoptions.grid"
+                    [colors]="employeePrimaryChartoptions.colors"
+                    [series]="employeePrimaryChartoptions.series"
+                    [plotOptions]="employeePrimaryChartoptions.plotOptions"
+                    [stroke]="employeePrimaryChartoptions.stroke"
+                  ></apx-chart>
+                </div>
+              </div>
+            </div>
+            <div class="employee-task d-flex justify-content-between align-items-center">
+              <div class="media">
+                <div class="avatar mr-75">
+                  <img
+                    src="assets/images/portrait/small/avatar-s-7.jpg"
+                    class="rounded"
+                    width="42"
+                    height="42"
+                    alt="Avatar"
+                  />
+                </div>
+                <div class="media-body my-auto">
+                  <h6 class="mb-0">Louisa Norton</h6>
+                  <small>UI Designer</small>
+                </div>
+              </div>
+              <div class="d-flex align-items-center">
+                <small class="text-muted mr-75">4hr 17m</small>
+                <div class="employee-task-chart-danger">
+                  <apx-chart
+                    [chart]="employeeDangerChartoptions.chart"
+                    [grid]="employeeDangerChartoptions.grid"
+                    [colors]="employeeDangerChartoptions.colors"
+                    [series]="employeeDangerChartoptions.series"
+                    [plotOptions]="employeeDangerChartoptions.plotOptions"
+                    [stroke]="employeeDangerChartoptions.stroke"
+                  ></apx-chart>
+                </div>
+              </div>
+            </div>
+            <div class="employee-task d-flex justify-content-between align-items-center">
+              <div class="media">
+                <div class="avatar mr-75">
+                  <img
+                    src="assets/images/portrait/small/avatar-s-1.jpg"
+                    class="rounded"
+                    width="42"
+                    height="42"
+                    alt="Avatar"
+                  />
+                </div>
+                <div class="media-body my-auto">
+                  <h6 class="mb-0">Jayden Duncan</h6>
+                  <small>Java Developer</small>
+                </div>
+              </div>
+              <div class="d-flex align-items-center">
+                <small class="text-muted mr-75">12hr 8m</small>
+                <div class="employee-task-chart-success">
+                  <apx-chart
+                    [chart]="employeeSuccessChartoptions.chart"
+                    [grid]="employeeSuccessChartoptions.grid"
+                    [colors]="employeeSuccessChartoptions.colors"
+                    [series]="employeeSuccessChartoptions.series"
+                    [plotOptions]="employeeSuccessChartoptions.plotOptions"
+                    [stroke]="employeeSuccessChartoptions.stroke"
+                  ></apx-chart>
+                </div>
+              </div>
+            </div>
+            <div class="employee-task d-flex justify-content-between align-items-center">
+              <div class="media">
+                <div class="avatar mr-75">
+                  <img
+                    src="assets/images/portrait/small/avatar-s-20.jpg"
+                    class="rounded"
+                    width="42"
+                    height="42"
+                    alt="Avatar"
+                  />
+                </div>
+                <div class="media-body my-auto">
+                  <h6 class="mb-0">Cynthia Howell</h6>
+                  <small>Anguler Developer</small>
+                </div>
+              </div>
+              <div class="d-flex align-items-center">
+                <small class="text-muted mr-75">3hr 19m</small>
+                <div class="employee-task-chart-secondary">
+                  <apx-chart
+                    [chart]="employeeSecondaryChartoptions.chart"
+                    [grid]="employeeSecondaryChartoptions.grid"
+                    [colors]="employeeSecondaryChartoptions.colors"
+                    [series]="employeeSecondaryChartoptions.series"
+                    [plotOptions]="employeeSecondaryChartoptions.plotOptions"
+                    [stroke]="employeeSecondaryChartoptions.stroke"
+                  ></apx-chart>
+                </div>
+              </div>
+            </div>
+            <div class="employee-task d-flex justify-content-between align-items-center">
+              <div class="media">
+                <div class="avatar mr-75">
+                  <img
+                    src="assets/images/portrait/small/avatar-s-16.jpg"
+                    class="rounded"
+                    width="42"
+                    height="42"
+                    alt="Avatar"
+                  />
+                </div>
+                <div class="media-body my-auto">
+                  <h6 class="mb-0">Helena Payne</h6>
+                  <small>Marketing</small>
+                </div>
+              </div>
+              <div class="d-flex align-items-center">
+                <small class="text-muted mr-75">9hr 50m</small>
+                <div class="employee-task-chart-warning">
+                  <apx-chart
+                    [chart]="employeeWarningChartoptions.chart"
+                    [grid]="employeeWarningChartoptions.grid"
+                    [colors]="employeeWarningChartoptions.colors"
+                    [series]="employeeWarningChartoptions.series"
+                    [plotOptions]="employeeWarningChartoptions.plotOptions"
+                    [stroke]="employeeWarningChartoptions.stroke"
+                  ></apx-chart>
+                </div>
+              </div>
+            </div>
+            <div class="employee-task d-flex justify-content-between align-items-center">
+              <div class="media">
+                <div class="avatar mr-75">
+                  <img
+                    src="assets/images/portrait/small/avatar-s-13.jpg"
+                    class="rounded"
+                    width="42"
+                    height="42"
+                    alt="Avatar"
+                  />
+                </div>
+                <div class="media-body my-auto">
+                  <h6 class="mb-0">Troy Jensen</h6>
+                  <small>iOS Developer</small>
+                </div>
+              </div>
+              <div class="d-flex align-items-center">
+                <small class="text-muted mr-75">4hr 48m</small>
+                <div class="employee-task-chart-primary-2">
+                  <apx-chart
+                    [chart]="employeePrimaryTwoChartoptions.chart"
+                    [grid]="employeePrimaryTwoChartoptions.grid"
+                    [colors]="employeePrimaryTwoChartoptions.colors"
+                    [series]="employeePrimaryTwoChartoptions.series"
+                    [plotOptions]="employeePrimaryTwoChartoptions.plotOptions"
+                    [stroke]="employeePrimaryTwoChartoptions.stroke"
+                  ></apx-chart>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/ Employee Task Card -->
+
+      <!-- Developer Meetup Card -->
+      <div class="col-lg-4 col-md-6 col-12">
+        <div class="card card-developer-meetup">
+          <div class="bg-light-primary rounded-top text-center">
+            <img src="assets/images/illustration/email.svg" alt="Meeting Pic" height="170" />
+          </div>
+          <div class="card-body">
+            <div class="meetup-header d-flex align-items-center">
+              <div class="meetup-day">
+                <h6 class="mb-0">THU</h6>
+                <h3 class="mb-0">24</h3>
+              </div>
+              <div class="my-auto">
+                <h4 class="card-title mb-25">Developer Meetup</h4>
+                <p class="card-text mb-0">Meet world popular developers</p>
+              </div>
+            </div>
+            <div class="media">
+              <div class="avatar bg-light-primary rounded mr-1">
+                <div class="avatar-content">
+                  <i data-feather="calendar" class="avatar-icon font-medium-3"></i>
+                </div>
+              </div>
+              <div class="media-body">
+                <h6 class="mb-0">Sat, May 25, 2020</h6>
+                <small>10:AM to 6:PM</small>
+              </div>
+            </div>
+            <div class="media">
+              <div class="avatar bg-light-primary rounded mr-1">
+                <div class="avatar-content">
+                  <i data-feather="map-pin" class="avatar-icon font-medium-3"></i>
+                </div>
+              </div>
+              <div class="media-body">
+                <h6 class="mb-0">Central Park</h6>
+                <small>Manhattan, New york City</small>
+              </div>
+            </div>
+            <div class="avatar-group">
+              <div placement="bottom" container="body" ngbTooltip="Billy Hopkins" class="avatar pull-up">
+                <img src="assets/images/portrait/small/avatar-s-9.jpg" alt="Avatar" width="33" height="33" />
+              </div>
+              <div placement="bottom" container="body" ngbTooltip="Amy Carson" class="avatar pull-up">
+                <img src="assets/images/portrait/small/avatar-s-6.jpg" alt="Avatar" width="33" height="33" />
+              </div>
+              <div placement="bottom" container="body" ngbTooltip="Brandon Miles" class="avatar pull-up">
+                <img src="assets/images/portrait/small/avatar-s-8.jpg" alt="Avatar" width="33" height="33" />
+              </div>
+              <div placement="bottom" container="body" ngbTooltip="Daisy Weber" class="avatar pull-up">
+                <img src="assets/images/portrait/small/avatar-s-7.jpg" alt="Avatar" width="33" height="33" />
+              </div>
+              <div placement="bottom" container="body" ngbTooltip="Jenny Looper" class="avatar pull-up">
+                <img src="assets/images/portrait/small/avatar-s-20.jpg" alt="Avatar" width="33" height="33" />
+              </div>
+              <h6 class="align-self-center cursor-pointer ml-50 mb-0">+42</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/ Developer Meetup Card -->
+
+      <!-- Profile Card -->
+      <div class="col-lg-4 col-md-6 col-12">
+        <div class="card card-profile">
+          <img src="assets/images/banner/banner-12.jpg" class="img-fluid card-img-top" alt="Profile Cover Photo" />
+          <div class="card-body">
+            <div class="profile-image-wrapper">
+              <div class="profile-image">
+                <div class="avatar">
+                  <img src="assets/images/portrait/small/avatar-s-9.jpg" alt="Profile Picture" />
+                </div>
+              </div>
+            </div>
+            <h3>Curtis Stone</h3>
+            <h6 class="text-muted">Malaysia</h6>
+            <div class="badge badge-light-primary profile-badge">Pro Level</div>
+            <hr class="mb-2" />
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <h6 class="text-muted font-weight-bolder">Followers</h6>
+                <h3 class="mb-0">10.3k</h3>
+              </div>
+              <div>
+                <h6 class="text-muted font-weight-bolder">Projects</h6>
+                <h3 class="mb-0">156</h3>
+              </div>
+              <div>
+                <h6 class="text-muted font-weight-bolder">Rank</h6>
+                <h3 class="mb-0">23</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/ Profile Card -->
+
+      <!-- Apply Job Card -->
+      <div class="col-lg-4 col-md-6 col-12">
+        <div class="card card-apply-job">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-1">
+              <div class="media">
+                <div class="avatar mr-1">
+                  <img src="assets/images/portrait/small/avatar-s-7.jpg" alt="Avatar" width="42" height="42" />
+                </div>
+                <div class="media-body">
+                  <h5 class="mb-0">Mittie Evans</h5>
+                  <small class="text-muted">Updated 12m ago</small>
+                </div>
+              </div>
+              <div class="badge badge-pill badge-light-primary">Design</div>
+            </div>
+            <h5 class="apply-job-title">Need a designer to form branding essentials for my business.</h5>
+            <p class="card-text mb-2">
+              Design high-quality designs, graphics, mock-ups and layouts for both new and existing web sites/ web
+              applications / mobile applications.
+            </p>
+            <div class="apply-job-package bg-light-primary rounded">
+              <div>
+                <sup class="text-body"><small>$</small></sup>
+                <h2 class="d-inline mr-25">9,800</h2>
+                <sub class="text-body"><small>/ month</small></sub>
+              </div>
+              <div class="badge badge-pill badge-light-primary">Full Time</div>
+            </div>
+            <button type="button" class="btn btn-primary btn-block" rippleEffect>Apply For This Job</button>
+          </div>
+        </div>
+      </div>
+      <!--/ Apply Job Card -->
+
+      <!-- Transaction card -->
+      <div class="col-lg-4 col-md-6 col-12">
+        <div class="card card-transaction">
+          <div class="card-header">
+            <h4 class="card-title">Transactions</h4>
+            <i data-feather="more-vertical" class="font-medium-3 cursor-pointer"></i>
+          </div>
+          <div class="card-body">
+            <div class="transaction-item">
+              <div class="media">
+                <div class="avatar bg-light-primary rounded">
+                  <div class="avatar-content">
+                    <i data-feather="pocket" class="avatar-icon font-medium-3"></i>
+                  </div>
+                </div>
+                <div class="media-body">
+                  <h6 class="transaction-title">Wallet</h6>
+                  <small>Starbucks</small>
+                </div>
+              </div>
+              <div class="font-weight-bolder text-danger">- $74</div>
+            </div>
+            <div class="transaction-item">
+              <div class="media">
+                <div class="avatar bg-light-success rounded">
+                  <div class="avatar-content">
+                    <i data-feather="check" class="avatar-icon font-medium-3"></i>
+                  </div>
+                </div>
+                <div class="media-body">
+                  <h6 class="transaction-title">Bank Transfer</h6>
+                  <small>Add Money</small>
+                </div>
+              </div>
+              <div class="font-weight-bolder text-success">+ $480</div>
+            </div>
+            <div class="transaction-item">
+              <div class="media">
+                <div class="avatar bg-light-danger rounded">
+                  <div class="avatar-content">
+                    <i data-feather="dollar-sign" class="avatar-icon font-medium-3"></i>
+                  </div>
+                </div>
+                <div class="media-body">
+                  <h6 class="transaction-title">Paypal</h6>
+                  <small>Add Money</small>
+                </div>
+              </div>
+              <div class="font-weight-bolder text-success">+ $590</div>
+            </div>
+            <div class="transaction-item">
+              <div class="media">
+                <div class="avatar bg-light-warning rounded">
+                  <div class="avatar-content">
+                    <i data-feather="credit-card" class="avatar-icon font-medium-3"></i>
+                  </div>
+                </div>
+                <div class="media-body">
+                  <h6 class="transaction-title">Mastercard</h6>
+                  <small>Ordered Food</small>
+                </div>
+              </div>
+              <div class="font-weight-bolder text-danger">- $23</div>
+            </div>
+            <div class="transaction-item">
+              <div class="media">
+                <div class="avatar bg-light-info rounded">
+                  <div class="avatar-content">
+                    <i data-feather="trending-up" class="avatar-icon font-medium-3"></i>
+                  </div>
+                </div>
+                <div class="media-body">
+                  <h6 class="transaction-title">Transfer</h6>
+                  <small>Refund</small>
+                </div>
+              </div>
+              <div class="font-weight-bolder text-success">+ $98</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/ Transaction card -->
+
+      <!-- Payment Card -->
+      <div class="col-lg-4 col-md-6 col-12">
+        <div class="card card-payment">
+          <div class="card-header">
+            <h4 class="card-title">Pay Amount</h4>
+            <h4 class="card-title text-primary">$455.60</h4>
+          </div>
+          <div class="card-body">
+            <form action="javascript:void(0);" class="form">
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group mb-2">
+                    <label for="payment-card-number">Card Number</label>
+                    <input
+                      type="number"
+                      id="payment-card-number"
+                      class="form-control"
+                      placeholder="2133 3244 4567 8921"
+                    />
+                  </div>
+                </div>
+                <div class="col-sm-6 col-12">
+                  <div class="form-group mb-2">
+                    <label for="payment-expiry">Expiry</label>
+                    <input type="number" id="payment-expiry" class="form-control" placeholder="MM / YY" />
+                  </div>
+                </div>
+                <div class="col-sm-6 col-12">
+                  <div class="form-group mb-2">
+                    <label for="payment-cvv">CVV / CVC</label>
+                    <input type="number" id="payment-cvv" class="form-control" placeholder="123" />
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-group mb-2">
+                    <label for="payment-input-name">Input Name</label>
+                    <input type="text" id="payment-input-name" class="form-control" placeholder="Curtis Stone" />
+                  </div>
+                </div>
+                <div class="col-12">
+                  <button type="button" class="btn btn-primary btn-block" rippleEffect>Make Payment</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!--/ Payment Card -->
+    </div>
+
+    <div class="row match-height">
+      <!-- User Timeline Card -->
+      <div class="col-lg-8 col-12">
+        <div class="card card-user-timeline">
+          <div class="card-header">
+            <div class="d-flex align-items-center">
+              <i data-feather="list" class="user-timeline-title-icon"></i>
+              <h4 class="card-title">User Timeline</h4>
+            </div>
+            <i data-feather="more-vertical" class="font-medium-3 cursor-pointer"></i>
+          </div>
+          <div class="card-body">
+            <ul class="timeline ml-50 mb-0">
+              <li class="timeline-item">
+                <span class="timeline-point timeline-point-indicator"></span>
+                <div class="timeline-event">
+                  <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
+                    <h6>12 Invoices have been paid</h6>
+                    <span class="timeline-event-time mr-1">12 min ago</span>
+                  </div>
+                  <p>Invoices have been paid to the company.</p>
+                  <div class="media align-items-center">
+                    <img class="mr-1" src="assets/images/icons/json.png" alt="data.json" height="23" />
+                    <h6 class="media-body mb-0">data.json</h6>
+                  </div>
+                </div>
+              </li>
+              <li class="timeline-item">
+                <span class="timeline-point timeline-point-warning timeline-point-indicator"></span>
+                <div class="timeline-event">
+                  <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
+                    <h6>Client Meeting</h6>
+                    <span class="timeline-event-time mr-1">45 min ago</span>
+                  </div>
+                  <p>Project meeting with john @10:15am</p>
+                  <div class="media align-items-center">
+                    <div class="avatar mr-50">
+                      <img src="assets/images/portrait/small/avatar-s-9.jpg" alt="Avatar" width="38" height="38" />
+                    </div>
+                    <div class="media-body">
+                      <h6 class="mb-0">John Doe (Client)</h6>
+                      <p class="mb-0">CEO of Infibeam</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="timeline-item">
+                <span class="timeline-point timeline-point-info timeline-point-indicator"></span>
+                <div class="timeline-event">
+                  <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
+                    <h6>Create a new project for client</h6>
+                    <span class="timeline-event-time mr-1">2 day ago</span>
+                  </div>
+                  <p>Add files to new design folder</p>
+                  <div class="avatar-group">
+                    <div placement="bottom" container="body" ngbTooltip="Billy Hopkins" class="avatar pull-up">
+                      <img src="assets/images/portrait/small/avatar-s-9.jpg" alt="Avatar" width="33" height="33" />
+                    </div>
+                    <div placement="bottom" container="body" ngbTooltip="Amy Carson" class="avatar pull-up">
+                      <img src="assets/images/portrait/small/avatar-s-6.jpg" alt="Avatar" width="33" height="33" />
+                    </div>
+                    <div placement="bottom" container="body" ngbTooltip="Brandon Miles" class="avatar pull-up">
+                      <img src="assets/images/portrait/small/avatar-s-8.jpg" alt="Avatar" width="33" height="33" />
+                    </div>
+                    <div placement="bottom" container="body" ngbTooltip="Daisy Weber" class="avatar pull-up">
+                      <img src="assets/images/portrait/small/avatar-s-7.jpg" alt="Avatar" width="33" height="33" />
+                    </div>
+                    <div placement="bottom" container="body" ngbTooltip="Jenny Looper" class="avatar pull-up">
+                      <img src="assets/images/portrait/small/avatar-s-20.jpg" alt="Avatar" width="33" height="33" />
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="timeline-item">
+                <span class="timeline-point timeline-point-danger timeline-point-indicator"></span>
+                <div class="timeline-event">
+                  <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
+                    <h6>Create a new project for client</h6>
+                    <span class="timeline-event-time mr-1">5 day ago</span>
+                  </div>
+                  <p class="mb-0">Add files to new design folder</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!--/ User Timeline Card -->
+
+      <!-- Chat Card -->
+      <div class="col-lg-4 col-md-6 col-12">
+        <div class="card chat-widget">
+          <div class="card-header">
+            <div class="d-flex align-items-center">
+              <div class="avatar mr-2">
+                <img [src]="chatUser.avatar" alt="Avatar" width="34" height="34" />
+                <span class="avatar-status-online"></span>
+              </div>
+              <h5 class="mb-0">{{ chatUser.fullName }}</h5>
+            </div>
+            <i data-feather="more-vertical" class="font-medium-3 cursor-pointer"></i>
+          </div>
+          <!-- User Chat messages -->
+          <section class="chat-app-window">
+            <div class="user-chats" [perfectScrollbar] #scrollMe [scrollTop]="scrolltop">
+              <div class="chats">
+                <div
+                  class="chat"
+                  *ngFor="let chatRef of chats.chat"
+                  [ngClass]="{ 'chat-left': chatRef.senderId === chats.userId }"
+                >
+                  <div class="chat-avatar">
+                    <span class="avatar box-shadow-1 cursor-pointer">
+                      <img
+                        *ngIf="chatRef.senderId === chats.userId; else alternateAvatar"
+                        [src]="chatUser.avatar"
+                        alt="avatar"
+                        height="36"
+                        width="36"
+                      />
+                      <ng-template #alternateAvatar>
+                        <img [src]="userProfile.avatar" alt="avatar" height="36" width="36" />
+                      </ng-template>
+                    </span>
+                  </div>
+                  <div class="chat-body">
+                    <div class="chat-content">
+                      <p>{{ chatRef.message }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Submit Chat form -->
+            <form class="chat-app-form justify-content-between">
+              <div class="input-group input-group-merge mr-50 w-75 form-send-message">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <label for="attach-doc" class="attachment-icon mb-0">
+                      <i data-feather="image" class="cursor-pointer lighten-2 text-secondary"></i>
+                      <input type="file" id="attach-doc" hidden /> </label
+                  ></span>
+                </div>
+                <input
+                  type="text"
+                  class="form-control message"
+                  placeholder="Type your message"
+                  [(ngModel)]="chatMessage"
+                  name="chat-message"
+                  (keydown.enter)="updateChat()"
+                />
+              </div>
+              <button type="button" class="btn btn-primary send" rippleEffect>
+                <i data-feather="send" class="d-lg-none"></i>
+                <span class="d-none text-nowrap d-lg-block" (click)="updateChat()">Send</span>
+              </button>
+            </form>
+            <!--/ Submit Chat form -->
+          </section>
+          <!-- User Chat messages -->
+        </div>
+      </div>
+      <!--/ Chat Card -->
+
+      <!-- Business Card -->
+      <div class="col-lg-4 col-md-6 col-12">
+        <div class="card business-card">
+          <div class="card-header pb-1">
+            <h4 class="card-title">For Business Sharks</h4>
+            <i data-feather="more-vertical" class="font-medium-3 cursor-pointer"></i>
+          </div>
+          <div class="card-body">
+            <p class="card-text">
+              Here, i focus ona range of items and featured that we use in life without giving them
+            </p>
+            <h6 class="mb-75">Basic price is $130</h6>
+            <div class="business-items">
+              <div class="business-item">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="business-checkbox-1" />
+                    <label class="custom-control-label" for="business-checkbox-1">Option #1</label>
+                  </div>
+                  <div class="badge badge-light-success">+$39</div>
+                </div>
+              </div>
+              <div class="business-item">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="business-checkbox-2" checked />
+                    <label class="custom-control-label" for="business-checkbox-2">Option #2</label>
+                  </div>
+                  <div class="badge badge-light-primary">+85</div>
+                </div>
+              </div>
+              <div class="business-item">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="business-checkbox-3" />
+                    <label class="custom-control-label" for="business-checkbox-3">Option #3</label>
+                  </div>
+                  <div class="badge badge-light-success">+$199</div>
+                </div>
+              </div>
+              <div class="business-item">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="business-checkbox-4" />
+                    <label class="custom-control-label" for="business-checkbox-4">Option #4</label>
+                  </div>
+                  <div class="badge badge-light-success">+$459</div>
+                </div>
+              </div>
+            </div>
+            <button type="button" class="btn btn-primary btn-block" rippleEffect>Purchase</button>
+          </div>
+        </div>
+      </div>
+      <!--/ Business Card -->
+
+      <!-- Browser States Card -->
+      <div class="col-lg-4 col-md-6 col-12">
+        <div class="card card-browser-states">
+          <div class="card-header">
+            <h4 class="card-title">Browser States</h4>
+            <i data-feather="more-vertical" class="font-medium-3 cursor-pointer"></i>
+          </div>
+          <div class="card-body">
+            <p class="card-text font-small-2">Counter August 2020</p>
+            <div class="browser-states">
+              <div class="media">
+                <img src="assets/images/icons/google-chrome.png" class="rounded mr-1" height="30" alt="Google Chrome" />
+                <h6 class="align-self-center mb-0">Google Chrome</h6>
+              </div>
+              <div class="d-flex align-items-center">
+                <div class="font-weight-bold text-body-heading mr-1">54.4%</div>
+                <div class="state-chart-primary">
+                  <apx-chart
+                    [chart]="statePrimaryChartoptions.chart"
+                    [grid]="statePrimaryChartoptions.grid"
+                    [colors]="statePrimaryChartoptions.colors"
+                    [series]="statePrimaryChartoptions.series"
+                    [plotOptions]="statePrimaryChartoptions.plotOptions"
+                    [stroke]="statePrimaryChartoptions.stroke"
+                  ></apx-chart>
+                </div>
+              </div>
+            </div>
+            <div class="browser-states">
+              <div class="media">
+                <img
+                  src="assets/images/icons/mozila-firefox.png"
+                  class="rounded mr-1"
+                  height="30"
+                  alt="Mozila Firefox"
+                />
+                <h6 class="align-self-center mb-0">Mozila Firefox</h6>
+              </div>
+              <div class="d-flex align-items-center">
+                <div class="font-weight-bold text-body-heading mr-1">6.1%</div>
+                <div class="state-chart-warning">
+                  <apx-chart
+                    [chart]="stateWarningChartoptions.chart"
+                    [grid]="stateWarningChartoptions.grid"
+                    [colors]="stateWarningChartoptions.colors"
+                    [series]="stateWarningChartoptions.series"
+                    [plotOptions]="stateWarningChartoptions.plotOptions"
+                    [stroke]="stateWarningChartoptions.stroke"
+                  ></apx-chart>
+                </div>
+              </div>
+            </div>
+            <div class="browser-states">
+              <div class="media">
+                <img src="assets/images/icons/apple-safari.png" class="rounded mr-1" height="30" alt="Apple Safari" />
+                <h6 class="align-self-center mb-0">Apple Safari</h6>
+              </div>
+              <div class="d-flex align-items-center">
+                <div class="font-weight-bold text-body-heading mr-1">14.6%</div>
+                <div class="state-chart-secondary">
+                  <apx-chart
+                    [chart]="stateSecondaryChartoptions.chart"
+                    [grid]="stateSecondaryChartoptions.grid"
+                    [colors]="stateSecondaryChartoptions.colors"
+                    [series]="stateSecondaryChartoptions.series"
+                    [plotOptions]="stateSecondaryChartoptions.plotOptions"
+                    [stroke]="stateSecondaryChartoptions.stroke"
+                  ></apx-chart>
+                </div>
+              </div>
+            </div>
+            <div class="browser-states">
+              <div class="media">
+                <img
+                  src="assets/images/icons/internet-explorer.png"
+                  class="rounded mr-1"
+                  height="30"
+                  alt="Internet Explorer"
+                />
+                <h6 class="align-self-center mb-0">Internet Explorer</h6>
+              </div>
+              <div class="d-flex align-items-center">
+                <div class="font-weight-bold text-body-heading mr-1">4.2%</div>
+                <div class="state-chart-info">
+                  <apx-chart
+                    [chart]="stateInfoChartoptions.chart"
+                    [grid]="stateInfoChartoptions.grid"
+                    [colors]="stateInfoChartoptions.colors"
+                    [series]="stateInfoChartoptions.series"
+                    [plotOptions]="stateInfoChartoptions.plotOptions"
+                    [stroke]="stateInfoChartoptions.stroke"
+                  ></apx-chart>
+                </div>
+              </div>
+            </div>
+            <div class="browser-states">
+              <div class="media">
+                <img src="assets/images/icons/opera.png" class="rounded mr-1" height="30" alt="Opera Mini" />
+                <h6 class="align-self-center mb-0">Opera Mini</h6>
+              </div>
+              <div class="d-flex align-items-center">
+                <div class="font-weight-bold text-body-heading mr-1">8.4%</div>
+                <div class="state-chart-danger">
+                  <apx-chart
+                    [chart]="stateDangerChartoptions.chart"
+                    [grid]="stateDangerChartoptions.grid"
+                    [colors]="stateDangerChartoptions.colors"
+                    [series]="stateDangerChartoptions.series"
+                    [plotOptions]="stateDangerChartoptions.plotOptions"
+                    [stroke]="stateDangerChartoptions.stroke"
+                  ></apx-chart>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/ Browser States Card -->
+
+      <!-- App Design Card -->
+      <div class="col-lg-4 col-md-6 col-12">
+        <div class="card card-app-design">
+          <div class="card-body">
+            <div class="badge badge-light-primary">03 Sep, 20</div>
+            <h4 class="card-title mt-1 mb-75">App design</h4>
+            <p class="card-text font-small-2 mb-2">
+              You can Find Only Post and Quotes Related to IOS like ipad app design, iphone app design
+            </p>
+            <div class="design-group">
+              <h6 class="section-label">Team</h6>
+              <div class="badge badge-light-warning mr-1">Figma</div>
+              <div class="badge badge-light-primary">Wireframe</div>
+            </div>
+            <div class="design-group">
+              <h6 class="section-label">Members</h6>
+              <div class="avatar">
+                <img src="assets/images/portrait/small/avatar-s-9.jpg" width="34" height="34" alt="Avatar" />
+              </div>
+              <div class="avatar bg-light-danger">
+                <div class="avatar-content">PI</div>
+              </div>
+              <div class="avatar">
+                <img src="assets/images/portrait/small/avatar-s-14.jpg" width="34" height="34" alt="Avatar" />
+              </div>
+              <div class="avatar">
+                <img src="assets/images/portrait/small/avatar-s-7.jpg" width="34" height="34" alt="Avatar" />
+              </div>
+              <div class="avatar bg-light-secondary">
+                <div class="avatar-content">AL</div>
+              </div>
+            </div>
+            <div class="design-planning-wrapper">
+              <div class="design-planning">
+                <p class="card-text mb-25">Due Date</p>
+                <h6 class="mb-0">12 Apr, 21</h6>
+              </div>
+              <div class="design-planning">
+                <p class="card-text mb-25">Budget</p>
+                <h6 class="mb-0">$49251.91</h6>
+              </div>
+              <div class="design-planning">
+                <p class="card-text mb-25">Cost</p>
+                <h6 class="mb-0">$840.99</h6>
+              </div>
+            </div>
+            <button type="button" class="btn btn-primary btn-block" rippleEffect>Join Team</button>
+          </div>
+        </div>
+      </div>
+      <!--/ App Design Card -->
+    </div>
+    <!--/ Card Advance -->
+  </div>
+</div>

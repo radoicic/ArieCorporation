@@ -1,0 +1,91 @@
+<!-- NAVBAR -->
+<ng-container *ngTemplateOutlet="navbar"></ng-container>
+<!--/ NAVBAR -->
+
+<!-- MENU -->
+<ng-container *ngTemplateOutlet="menu"></ng-container>
+<!--/ MENU -->
+
+<!-- APP-CONTENT -->
+<div class="app-content content">
+  <div class="content-overlay"></div>
+  <div class="header-navbar-shadow" *ngIf="!coreConfig.layout.navbar.hidden"></div>
+  <!-- CONTENT -->
+  <content></content>
+  <!--/ CONTENT -->
+</div>
+<!--/ APP-CONTENT -->
+
+<!-- FOOTER -->
+<ng-container *ngTemplateOutlet="footer"></ng-container>
+<!--/ FOOTER -->
+
+<!-- PARTIALS ---------------------------------------------------------------------------------------- -->
+
+<!-- NAVBAR -->
+<ng-template #navbar>
+  <app-navbar
+    *ngIf="!coreConfig.layout.navbar.hidden"
+    [ngClass]="
+      coreConfig.layout.navbar.customBackgroundColor === true
+        ? coreConfig.layout.navbar.background + ' ' + coreConfig.layout.navbar.backgroundColor
+        : coreConfig.layout.navbar.background
+    "
+    class="header-navbar horizontal-header-navbar navbar-expand-lg navbar navbar-fixed align-items-center navbar-shadow navbar-brand-center"
+  >
+  </app-navbar>
+</ng-template>
+<!--/ NAVBAR -->
+
+<!-- MENU -->
+<ng-template #menu>
+  <div class="horizontal-menu-wrapper">
+    <!-- Horizontal menu: Visible above large screen only  -->
+    <app-menu
+      menuType="horizontal-menu"
+      [ngClass]="[
+        coreConfig.layout.navbar.customBackgroundColor === true
+          ? coreConfig.layout.navbar.background +
+            ' ' +
+            coreConfig.layout.navbar.type +
+            ' ' +
+            coreConfig.layout.navbar.backgroundColor
+          : coreConfig.layout.navbar.background + ' ' + coreConfig.layout.navbar.type,
+        coreConfig.layout.navbar.type === 'floating-nav' ? 'container-xxl' : ''
+      ]"
+      class="header-navbar navbar-expand-sm navbar navbar-horizontal navbar-shadow menu-border d-none d-xl-block"
+      *ngIf="!coreConfig.layout.menu.hidden"
+    ></app-menu>
+    <!-- Vertical overlay menu: Visible below large screen only  -->
+    <core-sidebar
+      name="menu"
+      [collapsed]="coreConfig.layout.menu.collapsed"
+      collapsibleSidebar="bs-gt-xl"
+      *ngIf="!coreConfig.layout.menu.hidden"
+      class="main-menu menu-fixed menu-light menu-accordio menu-shadow d-xl-none"
+      overlayClass="sidenav-overlay"
+      [ngClass]="[coreConfig.layout.menu.collapsed === true ? '' : 'expanded']"
+    >
+      <app-menu menuType="vertical-menu" class="vertical-menu"></app-menu>
+    </core-sidebar>
+  </div>
+</ng-template>
+<!--/ MENU -->
+
+<!-- FOOTER -->
+<ng-template #footer>
+  <footer
+    *ngIf="!coreConfig.layout.footer.hidden"
+    class="footer"
+    [ngClass]="
+      coreConfig.layout.footer.customBackgroundColor === true
+        ? coreConfig.layout.footer.background +
+          ' ' +
+          coreConfig.layout.footer.type +
+          ' ' +
+          coreConfig.layout.footer.backgroundColor
+        : coreConfig.layout.footer.background + ' ' + coreConfig.layout.footer.type
+    "
+  ></footer>
+</ng-template>
+<!-- / FOOTER -->

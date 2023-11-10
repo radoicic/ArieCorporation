@@ -1,0 +1,45 @@
+// Dropdown
+
+$_dropdown_spacing: 0.5rem;
+
+// Ngb-Dropdown ::before position
+.dropdown-menu {
+  transform: none; // ngDropdown fix for the (https://ng-bootstrap.github.io/#/components/dropdown/examples#container)
+  // Dropdown margin according to dropdown position
+
+  &[x-placement='bottom-left'],
+  &[x-placement='bottom-right'] {
+    margin-top: $_dropdown_spacing;
+  }
+
+  &[x-placement='top-left'],
+  &[x-placement='top-right'] {
+    margin-bottom: $_dropdown_spacing;
+  }
+
+  &[x-placement='right-left'] {
+    margin-left: $_dropdown_spacing;
+  }
+
+  &[x-placement='left-left'] {
+    margin-right: $_dropdown_spacing;
+  }
+}
+// dropdown left
+.dropleft {
+  .dropdown-menu {
+    &:before {
+      left: auto;
+    }
+  }
+}
+
+// dropdown right
+.dropright {
+  .dropdown-menu {
+    &:before {
+      border-top: none;
+      border-left: none;
+    }
+  }
+}

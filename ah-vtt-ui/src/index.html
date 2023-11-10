@@ -1,0 +1,154 @@
+<!--
+Template Name: Vuexy - Vuejs, React, Angular, HTML & Laravel Admin Dashboard Template
+Author: PixInvent
+Website: http://www.pixinvent.com/
+Purchase: https://1.envato.market/vuexy_admin
+Renew Support: https://1.envato.market/vuexy_admin
+Contact: hello@pixinvent.com
+Follow: www.twitter.com/pixinvents
+Like: www.facebook.com/pixinvents
+License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>VTT-Vaccine Tracker</title>
+    <base href="/" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="VTT"
+    />
+    <meta
+      name="keywords"
+      content="admin template, dashboard template, flat admin template, responsive admin template, web app, Bootstrap, Bootstrap 4, AngularJS, Angular, Angular 2, Angular 8"
+    />
+    <meta name="author" content="PIXINVENT" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600"
+      rel="stylesheet"
+    />
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgjNW0WA93qphgZW-joXVR6VC3IiYFjfo"></script>
+
+    <!-- Vuexy loading Screen CSS -->
+    <style type="text/css">
+      #loading-bg {
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        display: block;
+        position: absolute;
+        z-index: 99999;
+        pointer-events: none;
+      }
+
+      .loading-logo {
+        position: absolute;
+        left: calc(50% - 45px);
+        top: 40%;
+      }
+
+      .loading {
+        position: absolute;
+        left: calc(50% - 35px);
+        top: 50%;
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        border: 3px solid transparent;
+      }
+
+      .loading .effect-1,
+      .loading .effect-2 {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border: 3px solid transparent;
+        border-left: 3px solid rgba(121, 97, 249, 1);
+        border-radius: 50%;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+
+      .loading .effect-1 {
+        animation: rotate 1s ease infinite;
+      }
+
+      .loading .effect-2 {
+        animation: rotateOpacity 1s ease infinite 0.1s;
+      }
+
+      .loading .effect-3 {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border: 3px solid transparent;
+        border-left: 3px solid rgba(121, 97, 249, 1);
+        -webkit-animation: rotateOpacity 1s ease infinite 0.2s;
+        animation: rotateOpacity 1s ease infinite 0.2s;
+        border-radius: 50%;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+
+      .loading .effects {
+        transition: all 0.3s ease;
+      }
+
+      @keyframes rotate {
+        0% {
+          -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+
+        100% {
+          -webkit-transform: rotate(1turn);
+          transform: rotate(1turn);
+        }
+      }
+
+      @keyframes rotateOpacity {
+        0% {
+          -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+          opacity: 0.1;
+        }
+
+        100% {
+          -webkit-transform: rotate(1turn);
+          transform: rotate(1turn);
+          opacity: 1;
+        }
+      }
+    </style>
+    <!-- / Vuexy loading Screen CSS -->
+  </head>
+
+  <body>
+    <!-- Vuexy loading Screen -->
+    <core-loading-screen id="loading-bg">
+      <div class="loading-logo">
+        <img src="assets/images/logo/logo.png" alt="Logo" />
+      </div>
+      <div class="loading">
+        <div class="effect-1 effects"></div>
+        <div class="effect-2 effects"></div>
+        <div class="effect-3 effects"></div>
+      </div>
+    </core-loading-screen>
+    <!-- / Vuexy loading Screen -->
+
+    <!-- Vuexy root component -->
+    <app-root> </app-root>
+    <!-- / Vuexy root component -->
+  </body>
+</html>

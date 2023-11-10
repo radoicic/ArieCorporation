@@ -1,0 +1,15 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <!-- content-header component -->
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+
+    <!-- Tour -->
+    <core-card-snippet [snippetCode]="_snippetCodeTour">
+      <h4 class="card-title">Tour</h4>
+      <div class="card-body">
+        <div class="btn btn-outline-primary" (click)="startTour()">Start Tour</div>
+      </div>
+    </core-card-snippet>
+    <!--/ Tour -->
+  </div>
+</div>

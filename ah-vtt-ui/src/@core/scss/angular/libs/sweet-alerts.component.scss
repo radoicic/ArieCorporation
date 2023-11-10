@@ -1,0 +1,20 @@
+// animate scss
+@import '~animate.css/animate.min.css';
+
+// extended sweet-alerts scss
+@import '@core/scss/base/plugins/extensions/ext-component-sweet-alerts.scss';
+
+.swal2-styled {
+  border: 1px solid transparent !important;
+  border-radius: 0.358rem !important;
+  font-size: inherit !important;
+  margin: initial;
+  padding: 0.786rem 1.5rem;
+  &:focus {
+    box-shadow: none;
+  }
+}
+
+.swal2-content {
+  padding: 0 1.6em;
+}

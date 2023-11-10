@@ -1,0 +1,43 @@
+<div class="btn-group touchspin-wrapper" [ngClass]="{ 'touchspin-sm': size == 'sm', 'touchspin-lg': size == 'lg' }">
+  <button
+    class="btn btn-sm btn-primary btn-touchspin btn-touchspin-down"
+    (click)="decrement()"
+    [disabled]="disabledValueDecrement"
+    [ngClass]="{
+      'btn-info': color == 'info',
+      'btn-warning': color == 'warning',
+      'btn-success': color == 'success',
+      'btn-danger': color == 'danger'
+    }"
+  >
+    <span *ngIf="!iconChevron" data-feather="minus"></span>
+    <span *ngIf="iconChevron" data-feather="chevron-down"></span>
+  </button>
+  <input
+    type="number"
+    class="form-control"
+    [(ngModel)]="numberValue"
+    value="{{ numberValue }}"
+    [disabled]="disabledValue"
+    [step]="stepValue"
+    [min]="minValue"
+    [max]="maxValue"
+    (input)="inputChange($event.target.value)"
+    pattern="\d*"
+    maxlength="4"
+  />
+  <button
+    class="btn btn-sm btn-primary btn-touchspin btn-touchspin-up"
+    (click)="increment()"
+    [disabled]="disabledValueIncrement"
+    [ngClass]="{
+      'btn-info': color == 'info',
+      'btn-warning': color == 'warning',
+      'btn-success': color == 'success',
+      'btn-danger': color == 'danger'
+    }"
+  >
+    <span *ngIf="!iconChevron" data-feather="plus"></span>
+    <span *ngIf="iconChevron" data-feather="chevron-up"></span>
+  </button>
+</div>

@@ -1,0 +1,205 @@
+<div class="slideout-content">
+  <!-- Modal to add new traveler starts-->
+  <div class="modalsd modal-slide-in sdfade new-traveler-modal" id="modals-slide-in">
+    <div class="modal-dialog">
+      <form class="add-new-traveler modal-content pt-0" (ngSubmit)="(newtravelerForm.form.valid)" #newtravelerForm="ngForm">
+        <button
+          type="reset"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+          (click)="toggleSidebar('new-traveler-sidebar')"
+          rippleEffect
+        >
+          ×
+        </button>
+        <div class="modal-header mb-1">
+          <h5 class="modal-title" id="exampleModalLabel" *ngIf="id === 0">New Traveler</h5>
+          <h5 class="modal-title" id="exampleModalLabel" *ngIf="id !== 0">Edit Traveler</h5>
+        </div>
+        <div class="modal-body flex-grow-1">
+          
+          <div class="form-group">
+            <label class="form-label" for="basic-icon-default-fullname">First Name</label>
+            <input
+              type="text"
+              class="form-control dt-first-name"
+              id="basic-icon-default-firstname"
+              placeholder="First Name"
+              name="traveler-firstname"
+              [(ngModel)]="firstname"
+              [class.error]="newtravelerForm.submitted && FNameRef.invalid"
+              #FNameRef="ngModel"
+              requireds
+              aria-label="John Doe"
+              aria-describedby="basic-icon-default-fullname2"
+            />
+            <span *ngIf="newtravelerForm.submitted && FNameRef.invalid" class="invalid-form">
+              <small class="form-text text-danger" *ngIf="FNameRef.errors.required">This field is required!</small>
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="basic-icon-default-fullname">Middle Name</label>
+            <input
+              type="text"
+              class="form-control dt-full-name"
+              id="basic-icon-default-fullname"
+              placeholder="Middle Name"
+              name="traveler-middlename"
+              [(ngModel)]="middlename"
+              [class.error]="newtravelerForm.submitted && FNameRef.invalid"
+              #FNameRef="ngModel"
+              aria-label="John Doe"
+              aria-describedby="basic-icon-default-fullname2"
+            />
+            <span *ngIf="newtravelerForm.submitted && FNameRef.invalid" class="invalid-form">
+              <small class="form-text text-danger" *ngIf="FNameRef.errors.required">This field is required!</small>
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="basic-icon-default-uname">Last Name</label>
+            <input
+              type="text"
+              id="basic-icon-default-lastname"
+              class="form-control dt-uname"
+              placeholder="Last Name"
+              aria-label="jdoe1"
+              aria-describedby="basic-icon-default-uname2"
+              name="traveler-name"
+              [(ngModel)]="lastname"
+              [class.error]="newtravelerForm.submitted && FtravelerNameRef.invalid"
+              #FtravelerNameRef="ngModel"
+              required
+            />
+            <span *ngIf="newtravelerForm.submitted && FtravelerNameRef.invalid" class="invalid-form">
+              <small class="form-text text-danger" *ngIf="FtravelerNameRef.errors.required">This field is required!</small>
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="basic-icon-default-email">DOB</label>
+            <input
+              type="date"
+              id="basic-icon-default-email"
+              class="form-control datepicker"
+              aria-describedby="basic-icon-default-dob"
+              name="traveler-dob"
+              [(ngModel)]="dob"
+              [class.error]="newtravelerForm.submitted && FDobRef.invalid"
+              #FDobRef="ngModel"
+              required
+            />
+            <span *ngIf="newtravelerForm.submitted && FDobRef.invalid" class="invalid-form">
+              <small class="form-text text-danger" *ngIf="FDobRef.errors.required">This field is required!</small>
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="basic-icon-default-fullname">Address</label>
+            <input
+              type="text"
+              class="form-control dt-address"
+              id="basic-icon-default-address"
+              name="traveler-address"
+              [(ngModel)]="address"
+              [class.error]="newtravelerForm.submitted && FAddressRef.invalid"
+              #FAddressRef="ngModel"
+              required
+              aria-label="John Doe"
+              aria-describedby="basic-icon-default-fullname2"
+            />
+            <span *ngIf="newtravelerForm.submitted && FAddressRef.invalid" class="invalid-form">
+              <small class="form-text text-danger" *ngIf="FAddressRef.errors.required">This field is required!</small>
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="vertical-sex">Sex</label>
+            <ng-select 
+              [items]="sexOptions"
+              [searchable]="false"
+              bindLabel="name"
+              bindValue="id"
+              name="traveler-sex"
+              [(ngModel)]="sex"
+              (change)="changeSelect($event)"
+              required
+            >
+            </ng-select>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="vertical-nationality">Nationality</label>
+            <ng-select 
+              [items]="countrylist"
+              [searchable]="true"
+              bindLabel="name"
+              bindValue="id"
+              name="traveler-nationality"
+              [(ngModel)]="nationality"
+              (change)="changeNationalitySelect($event)"
+              required
+            >
+            </ng-select>
+          </div>
+   
+          <div class="form-group">
+            <label class="form-label" for="basic-icon-default-fullname">Phone</label>
+            <input
+              type="text"
+              class="form-control dt-full-name"
+              id="basic-icon-default-phone"
+              placeholder="Phone"
+              name="traveler-fullname"
+              [(ngModel)]="phone"
+              [class.error]="newtravelerForm.submitted && FPhoneRef.invalid"
+              #FPhoneRef="ngModel"
+              required
+              aria-label="John Doe"
+              aria-describedby="basic-icon-default-fullname2"
+            />
+            <span *ngIf="newtravelerForm.submitted && FPhoneRef.invalid" class="invalid-form">
+              <small class="form-text text-danger" *ngIf="FPhoneRef.errors.required">This field is required!</small>
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="basic-icon-default-email">Email</label>
+            <input
+              type="text"
+              id="basic-icon-default-email"
+              class="form-control dt-email"
+              placeholder="john.doe@example.com"
+              aria-label="john.doe@example.com"
+              aria-describedby="basic-icon-default-email2"
+              name="traveler-email"
+              [(ngModel)]="email"
+              [class.error]="newtravelerForm.submitted && FEmailRef.invalid"
+              #FEmailRef="ngModel"
+              required
+              aria-label="John Doe"
+              aria-describedby="basic-icon-default-fullname2"
+            />
+            <span *ngIf="newtravelerForm.submitted && FEmailRef.invalid" class="invalid-form">
+              <small class="form-text text-danger" *ngIf="FEmailRef.errors.required">This field is required!</small>
+            </span>
+            <small class="form-text text-muted"> You can use letters, numbers & periods </small>
+          </div>
+
+          <button type="submit" class="btn btn-primary mr-1" (click)="submit(newtravelerForm)" rippleEffect>Submit</button>
+          <button
+            type="reset"
+            class="btn btn-outline-secondary"
+            (click)="toggleSidebar('new-traveler-sidebar')"
+            rippleEffect
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- Modal to add new traveler Ends-->
+</div>

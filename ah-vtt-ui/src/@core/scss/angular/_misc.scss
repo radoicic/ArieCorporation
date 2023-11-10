@@ -1,0 +1,51 @@
+$bg-pre: #282c34;
+
+pre {
+  background-color: $bg-pre !important;
+  border-radius: 0.3rem;
+
+  code {
+    font-family: monospace;
+  }
+}
+
+.hljs {
+  font-size: 1.15rem;
+}
+
+// Flag icons custom css
+.flag-icon {
+  background-size: cover !important;
+}
+
+// ng form validation error
+.error {
+  ~ .input-group-append {
+    .input-group-text {
+      border-color: $danger !important;
+    }
+  }
+}
+
+// ! Fix: Match Height fix for custom card with snippet
+.match-height {
+  > [class*='col'] core-card-snippet {
+    display: grid;
+    flex: 1 1 auto;
+  }
+}
+
+// ! collapse toggle on animation dark border-bottom
+.collapse-shadow {
+  .card {
+    &.open {
+      border-color: $border-color !important;
+    }
+  }
+}
+
+//! Fix: PS Scroll sometimes appear on right side issue
+.main-menu .main-menu-content .ps__rail-y {
+  right: 0;
+  left: inherit !important;
+}

@@ -1,0 +1,14 @@
+.scroll-to-top {
+  position: fixed;
+  bottom: 5%;
+  right: 30px;
+  z-index: 99;
+  display: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.show-scroll-to-top {
+  opacity: 1;
+  display: block;
+  transition: all 0.2s ease-in-out;
+}

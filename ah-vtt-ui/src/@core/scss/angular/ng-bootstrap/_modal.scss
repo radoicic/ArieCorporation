@@ -1,0 +1,45 @@
+// Modal
+
+.modal {
+  top: -100px;
+  animation: ease-in-out 0.3s modal-fade;
+
+  &.show {
+    top: 0;
+  }
+
+  // disable modal animation
+  &.animation-disable {
+    top: 0;
+    animation: none;
+  }
+
+  .modal-body {
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+// Added for slide-in modal display issue due to default d block
+.modal-slide-in.modal {
+  width: auto;
+  display: block;
+}
+// Added for slide-in bg opacity issue
+.modal-backdrop.show {
+  background: rgba($black, 0.5);
+}
+
+// modal animation
+@keyframes modal-fade {
+  from {
+    top: -50px;
+    opacity: 0;
+  }
+
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}

@@ -1,0 +1,31 @@
+<h2 class="card-title font-weight-bold mb-1">Multi-factor Authentication</h2>
+<p class="card-text mb-2">Please enter the OTP sent over SMS to ****. Do not refresh or click the back button.</p>
+<ngb-alert [type]="'danger'" [dismissible]="false" *ngIf="error">
+	<div class="alert-body">
+		<p>{{ error }}</p>
+	</div>
+</ngb-alert>
+<form class="auth-login-form mt-2" [formGroup]="mfaForm" (ngSubmit)="onSubmit()">
+	<input type="hidden" formControlName="email" />
+	<input type="hidden" formControlName="password"/>
+	<div class="form-group">
+		<div class="d-flex justify-content-between">
+			<label class="form-label" for="login-otp">OTP</label>
+		  	<a href="javascript:void(0);" (click)="resendOtp()" *ngIf="!loading">
+				<small>Resend</small>
+		  	</a>
+		</div>
+		<input type="password" formControlName="otp" class="form-control" [ngClass]="{ 'is-invalid': submitted && formData.otp.errors }" placeholder="Enter OTP" aria-describedby="login-otp" autofocus="" tabindex="1" />
+		<div *ngIf="submitted && formData.otp.errors" class="invalid-feedback">
+			<div *ngIf="formData.otp.errors.required">OTP is required</div>
+		</div>
+	</div>
+
+	<button [disabled]="loading" class="btn btn-primary btn-block" tabindex="4" rippleEffect>
+		<span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>Sign in </button>
+</form>
+<p class="text-center mt-2">
+	<a (click)="backToForm.emit()"
+	  ><i data-feather="chevron-left" class="mb-25"></i> Back to login</a
+	>
+  </p>

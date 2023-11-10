@@ -1,0 +1,10 @@
+<!--Scroll to top-->
+<button
+  class="btn btn-primary btn-icon scroll-to-top"
+  [ngClass]="{ 'show-scroll-to-top': windowScrolled }"
+  type="button"
+  (click)="scrollToTop()"
+  rippleEffect
+>
+  <span [data-feather]="'arrow-up'"></span>
+</button>

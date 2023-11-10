@@ -1,0 +1,123 @@
+<!-- roles reference ui https://pixinvent.com/demo/vuexy-html-bootstrap-admin-template/html/vertical-menu-template/app-access-roles.html -->
+<h4 class="fw-semibold mb-2">Travelers List</h4>
+<p class="mb-4">A role provided access to predefined menus and features so that depending on <br> assigned role an administrator can have access to what Traveler needs.</p>
+<div class="content-wrapper container-xxl p-0">
+    <div class="content-body">
+      <!-- Travel List -->
+      <section class="Travelers-list-wrapper">
+  
+        <div class="card">
+          <div class="row">
+            <div class="col-md-6 col-12">
+              <div class="d-flex justify-content-between align-items-center m-1">
+                <label class="d-flex align-items-center"
+                  >Show
+                  <select class="form-control mx-25" [(ngModel)]="selectedOption">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                  </select>
+                  entries</label
+                >
+              </div>
+            </div>
+            <div class="col-md-6 col-12 d-flex justify-content-start justify-content-md-end">
+              <div class="d-flex align-items-center justify-content-end pr-1 pb-1 pb-md-0">
+                <label class="d-flex align-items-center ml-1 ml-md-0"
+                  >Search:<input
+                    [(ngModel)]="searchValue"
+                    name="searchValue"
+                    type="search"
+                    class="form-control ml-25"
+                    (keyup)="filterUpdate($event)"
+                    (search)="filterUpdate($event)"
+                    placeholder="Input name or email"
+                /></label>
+                <button class="btn btn-primary ml-1" rippleEffect (click)="toggleSidebar('new-traveler-sidebar', 0)">
+                  <i data-feather="plus" class="d-sm-none d-inline-block mr-0 mr-sm-1"></i
+                  ><span class="d-none d-sm-inline-block">Add New Traveler</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <ngx-datatable
+            [rows]="tempData"
+            [rowHeight]="50"
+            class="bootstrap core-bootstrap"
+            [limit]="selectedOption"
+            [columnMode]="ColumnMode.force"
+            [headerHeight]="50"
+            [footerHeight]="50"
+            [scrollbarH]="true"
+          >
+            <ngx-datatable-column name="Name" prop="name" [width]="200">
+              <ng-template let-row="row" let-name="value" ngx-datatable-cell-template>
+                <div class="d-flex align-items-center">
+                  <div *ngIf="row.avatar.length > 0; else customAvatar">
+                    <img
+                      class="rounded-circle mr-1"
+                      src="{{ row.avatar }}"
+                      height="32"
+                      width="32"
+                      alt="datatable-avatar"
+                    />
+                  </div>
+                  <ng-template #customAvatar>
+                    <div
+                      class="avatar mr-1 ml-0"
+                      [ngClass]="{
+                        'bg-light-success': row.status == 'active',
+                        'bg-light-secondary': row.status == 'inactive',
+                        'bg-light-warning': row.status == 'pending'
+                      }"
+                    >   
+                      <div class="avatar-content">{{ name | initials }}</div>
+                    </div>
+                  </ng-template>
+                  <div class="cell-line-height">
+                    <a routerLink="/apps/Traveler/Traveler-view/{{ row.id }}" class="font-medium-1 d-block">
+                      <span class="font-weight-bold">{{ name }}</span>
+                    </a>
+                    <span class="text-muted font-small-2"> {{ row.Travelername }}</span>
+                  </div>
+                </div>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Age" prop="age" [width]="50"></ngx-datatable-column>
+            <ngx-datatable-column name="Sex" prop="sex" [width]="50"></ngx-datatable-column>
+            <ngx-datatable-column name="Address" prop="address" [width]="250"></ngx-datatable-column>
+            <ngx-datatable-column name="Nationality" prop="nationality" [width]="50"></ngx-datatable-column>
+            <ngx-datatable-column name="Phone" prop="phone" [width]="50"></ngx-datatable-column>
+            <ngx-datatable-column name="Actions" [width]="40" [sortable]="false">
+              <ng-template ngx-datatable-cell-template let-row="row">
+                <div ngbDropdown container="body">
+                  <button ngbDropdownToggle type="button" class="btn icon-btn btn-sm hide-arrow" rippleEffect>
+                    <span [data-feather]="'more-vertical'" [class]="'cursor-pointer'"></span>
+                  </button>
+                  <div ngbDropdownMenu>
+                    <a (click)="toggleSidebar('new-traveler-sidebar', row.id)" ngbDropdownItem>
+                      <span [data-feather]="'edit'" [size]="16" [class]="'mr-50'"></span> Edit</a>
+                    <a (click)="deleteTraveler(row.id)" ngbDropdownItem>
+                      <span [data-feather]="'trash'" [size]="16" [class]="'mr-50'"></span> Delete</a>
+                  </div>
+                </div>
+              </ng-template>
+            </ngx-datatable-column>
+          </ngx-datatable>
+        </div>
+      </section>
+      <!--/ Traveler List -->
+    </div>
+  
+    <!-- New Traveler Sidebar -->
+    <core-sidebar
+      class="modal modal-slide-in sidebar-todo-modal fade"
+      name="new-traveler-sidebar"
+      overlayClass="modal-backdrop"
+    >
+      <app-new-traveler-sidebar [travelerId]="selectedId" (newItemEvent)="onSubmit($event)"></app-new-traveler-sidebar>
+    </core-sidebar>
+    <!--/ New Traveler Sidebar -->
+  </div>
+  

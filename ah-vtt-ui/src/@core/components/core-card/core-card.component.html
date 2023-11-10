@@ -1,0 +1,57 @@
+<!-- core card component -->
+<div
+  class="card"
+  #coreCard
+  [ngClass]="{ 'card-fullscreen': onclickEvent.expandStatus }"
+  *blockUI="coreCardId; template: _CoreBlockUiComponent"
+>
+  <div class="card-header" #cardHeader>
+    <ng-content select=".card-title"></ng-content>
+    <!-- heading elements -->
+    <div class="heading-elements">
+      <ul class="list-inline mb-0">
+        <!-- collapse -->
+        <li *ngIf="actionsView.collapse" (click)="collapse()">
+          <a data-action="collapse" [ngClass]="{ rotate: onclickEvent.collapseStatus }">
+            <i class="feather icon-chevron-down"></i>
+          </a>
+        </li>
+        <!-- expand -->
+        <li *ngIf="actionsView.expand" (click)="expand()">
+          <a data-action="expand">
+            <i class="feather" [ngClass]="onclickEvent.expandStatus ? 'icon-minimize' : 'icon-maximize'"></i>
+          </a>
+        </li>
+        <!-- reload -->
+        <li *ngIf="actionsView.reload" (click)="reload()">
+          <a data-action="reload">
+            <i class="feather icon-rotate-cw"></i>
+          </a>
+        </li>
+        <!-- close -->
+        <li *ngIf="actionsView.close" (click)="close()">
+          <a data-action="close">
+            <i class="feather icon-x"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!--/ heading elements -->
+  </div>
+  <div *ngIf="actionsView.collapse; else noCollapse" class="card-content" [ngbCollapse]="onclickEvent.collapseStatus">
+    <ng-container *ngTemplateOutlet="cardBodyOutlet"></ng-container>
+  </div>
+
+  <ng-template #noCollapse>
+    <ng-container *ngTemplateOutlet="cardBodyOutlet"></ng-container>
+  </ng-template>
+  <ng-template #cardBodyOutlet>
+    <!--? content wrapped with .card-body -->
+    <ng-content select=".card-body"></ng-content>
+
+    <!--? content without any wrapper -->
+    <ng-content></ng-content>
+  </ng-template>
+</div>
+
+<!-- /core card component -->

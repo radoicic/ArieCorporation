@@ -1,0 +1,61 @@
+<ng-template [ngIf]="!imageDataUrl">
+	<div class="form-row">
+		<div class="d-flex col-md-12 justify-content-center">
+            <div class="btn-group btn-group-toggle mb-1" ngbRadioGroup name="radioBasic" [(ngModel)]="pictureMode">
+                <label ngbButtonLabel class="btn btn-outline-primary" rippleEffect>
+                    <input ngbButton type="radio" [value]="0" />
+                    <i data-feather="upload" class="align-middle mr-sm-25 mr-0"></i> 
+                    Upload
+                </label>
+                <label ngbButtonLabel class="btn-outline-primary" rippleEffect>
+                    <input ngbButton type="radio" [value]="1" />
+                    <i data-feather="camera" class="align-middle mr-sm-25 mr-0"></i>
+                    Use Camera
+                </label>
+              </div>
+		</div>
+	</div>
+	<div class="form-row">
+		<div class="d-flex col-md-12 justify-content-center" *ngIf="pictureMode === 0">
+			<input type="file" (change)="upload($event)" />
+		</div>
+	</div>
+	<ng-template [ngIf]="pictureMode === 1">
+		<div class="form-row">
+			<div class="d-flex col-md-12 justify-content-center">
+				<webcam [trigger]="triggerObservable" width="300" [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable" [videoOptions]="videoOptions" [imageQuality]="1" (imageCapture)="handleImage($event)" (cameraSwitched)="cameraWasSwitched($event)" (initError)="handleInitError($event)"></webcam>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="d-flex col-md-12 justify-content-center">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-sm btn-outline-primary" (click)="showNextWebcam(true)" title="Next Camera" rippleEffect>
+                        <i data-feather="arrow-left" class="align-middle mr-sm-25 mr-0"></i>
+                        Previous Camera
+                    </button>
+                    <button type="button" class="btn btn-sm btn-outline-primary" (click)="triggerSnapshot()" title="Click Photo" rippleEffect>
+                        <i data-feather="aperture" class="align-middle ml-sm-25 ml-0" ></i>
+                        Click
+                    </button>
+                    <button type="button" class="btn btn-sm btn-outline-primary" (click)="showNextWebcam(false)" title="Previous Camera" rippleEffect>
+                        <i data-feather="arrow-right" class="align-middle ml-sm-25 ml-0"></i>
+                        Next Camera
+                    </button>
+                  </div>
+			</div>
+		</div>
+	</ng-template>
+</ng-template>
+<ng-template [ngIf]="imageDataUrl">
+	<div class="form-row mb-1">
+		<div class="d-flex col-md-12 justify-content-center">
+			<img width="300" height="300" src="{{imageDataUrl}}">
+			<!--TO-DO: Check for XSS! Use SafeUrl for this? -->
+		</div>
+	</div>
+	<div class="form-row">
+		<div class="d-flex col-md-12 justify-content-center">
+			<input type="button" class="btn btn-outline-primary" value="Update Picture" (click)="imageDataUrl=''">
+		</div>
+	</div>
+</ng-template>

@@ -1,0 +1,88 @@
+<div *ngIf="horizontalMenu" class="navbar-header d-xl-block d-none">
+  <!-- Navbar brand -->
+  <ul class="nav navbar-nav flex-row">
+    <li class="nav-item">
+      <a class="navbar-brand" [routerLink]="['/']">
+        <span class="brand-logo">
+          <img src="{{ coreConfig.app.appLogoImage }}" alt="brand-logo" width="36" />
+        </span>
+        <h2 class="brand-text mb-0">{{ coreConfig.app.appName }}</h2>
+      </a>
+    </li>
+  </ul>
+  <!--/ Navbar brand -->
+</div>
+
+<div class="navbar-container d-flex content">
+  <div class="bookmark-wrapper d-flex align-items-center">
+    <!-- Menu Toggler | Menu icon will be hidden in case of layout without menu -->
+    <ul class="nav navbar-nav d-xl-none" *ngIf="!coreConfig.layout.menu.hidden">
+      <li class="nav-item">
+        <a class="nav-link menu-toggle" (click)="toggleSidebar('menu')">
+          <span [data-feather]="'menu'" [class]="'ficon'"></span>
+        </a>
+      </li>
+    </ul>
+    <!--/ Menu Toggler -->
+
+    <!-- Toggle skin -->
+    <li class="nav-item d-none d-lg-block">
+      <a type="button" class="nav-link nav-link-style btn" (click)="toggleDarkSkin()">
+        <span [ngClass]="currentSkin === 'dark' ? 'icon-sun' : 'icon-moon'" class="ficon font-medium-5 feather"></span>
+      </a>
+    </li>
+    <!--/ Toggle skin -->
+  </div>
+
+  <ul class="nav navbar-nav align-items-center ml-auto">
+    <!-- ? Language selection | Uncomment if needed-->
+    <!-- <li ngbDropdown class="nav-item dropdown dropdown-language">
+      <a class="nav-link dropdown-toggle" id="dropdown-flag" ngbDropdownToggle>
+        <i class="flag-icon flag-icon-{{ languageOptions[_translateService.currentLang].flag }}"></i
+        ><span class="selected-language">{{ languageOptions[_translateService.currentLang].title }}</span></a
+      >
+      <div ngbDropdownMenu aria-labelledby="dropdown-flag">
+        <a *ngFor="let lang of _translateService.getLangs()" ngbDropdownItem (click)="setLanguage(lang)">
+          <i class="flag-icon flag-icon-{{ languageOptions[lang].flag }}"></i> {{ languageOptions[lang].title }}
+        </a>
+      </div>
+    </li> -->
+    <!--/ Language selection -->
+
+    <!-- User Dropdown -->
+    <li ngbDropdown class="nav-item dropdown-user">
+      <a
+        class="nav-link dropdown-toggle dropdown-user-link"
+        id="dropdown-user"
+        ngbDropdownToggle
+        id="navbarUserDropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <div class="user-nav d-sm-flex d-none">
+          <span class="user-name font-weight-bolder">John Doe</span><span class="user-status">Sample</span>
+        </div>
+        <span class="avatar"
+          ><img
+            class="round"
+            src="../../../../assets/images/portrait/small/avatar-s-11.jpg"
+            alt="avatar"
+            height="40"
+            width="40" /><span class="avatar-status-online"></span
+        ></span>
+      </a>
+      <div ngbDropdownMenu aria-labelledby="navbarUserDropdown" class="dropdown-menu dropdown-menu-right">
+        <a ngbDropdownItem [routerLink]="['/user-profile/edit']"><span [data-feather]="'user'" [class]="'mr-50'"></span> Profile</a
+        ><a ngbDropdownItem [routerLink]="['/']"><span [data-feather]="'mail'" [class]="'mr-50'"></span> Inbox</a
+        ><a ngbDropdownItem [routerLink]="['/']"><span [data-feather]="'check-square'" [class]="'mr-50'"></span> Task</a
+        ><a ngbDropdownItem [routerLink]="['/']"
+          ><span [data-feather]="'message-square'" [class]="'mr-50'"></span> Chats</a
+        >
+        <div class="dropdown-divider"></div>
+        <a ngbDropdownItem (click)="logout()"><span [data-feather]="'power'" [class]="'mr-50'"></span> Logout</a
+        >
+      </div>
+    </li>
+    <!--/ User Dropdown -->
+  </ul>
+</div>

@@ -1,0 +1,49 @@
+{
+  "profiles": {
+    "http": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "http://localhost:5020"
+    },
+    "https": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ConnectionStrings__Database": "Server=.;Initial Catalog=Testdb;Integrated Security=True;trusted_connection=true;encrypt=false;Initial Catalog=dev-demon-db;",
+        "Token__key": "7i78i7i8kjhlkjh55555555555",
+        "Token__Issuer": "https://localhost:7090",
+        "CorsUrl": "http://localhost:4200",
+        "EmailConfig__SenderEmail": "mail.ariesolutionstech@gmail.com",
+        "EmailConfig__SenderCredential": "ptrqhwoyvxyhypqw",
+        "EmailConfig__Port": "587",
+        "EmailConfig__Host": "smtp.gmail.com"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "https://localhost:7090;http://localhost:5020"
+    },
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  },
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:63618",
+      "sslPort": 44342
+    }
+  }
+}

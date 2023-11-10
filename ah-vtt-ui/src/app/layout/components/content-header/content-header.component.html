@@ -1,0 +1,47 @@
+<!-- app-content-header start -->
+<ng-container *ngIf="contentHeader">
+  <div class="content-header row">
+    <div class="content-header-left col-md-9 col-12 mb-2">
+      <div class="row breadcrumbs-top">
+        <div class="col-12 d-flex">
+          <h2 class="content-header-title float-left mb-0">
+            {{ contentHeader.headerTitle }}
+          </h2>
+          <!-- app-breadcrumb component -->
+          <app-breadcrumb [breadcrumb]="contentHeader.breadcrumb"></app-breadcrumb>
+        </div>
+      </div>
+    </div>
+    <ng-container *ngIf="contentHeader.actionButton">
+      <div class="content-header-right text-md-right col-md-3 col-12 d-md-block d-none">
+        <div class="form-group breadcrum-right">
+          <div ngbDropdown>
+            <button
+              ngbDropdownToggle
+              id="dropdownSettings"
+              class="btn-icon btn btn-primary btn-round btn-sm"
+              type="button"
+              rippleEffect
+            >
+              <span [data-feather]="'grid'"></span>
+            </button>
+            
+              <div ngbDropdownMenu aria-labelledby="dropdownSettings">
+                <ng-template ngFor let-setting [ngForOf]="contentHeader.dropdownSettings" >
+                  <a ngbDropdownItem [routerLink]="setting.link" *ngIf="setting.isLink">
+                    <span *ngIf="setting.icon" [data-feather]="settting.icon" [class]="'mr-50'"></span>
+                    <span *ngIf="!setting.icon" [class]="'mr-50'"></span> {{setting.text}}
+                  </a>
+                  <a ngbDropdownItem href="javascript:void(0);" *ngIf="!setting.isLink" (click)="onSettingClick(setting)">
+                    <span *ngIf="setting.icon" [data-feather]="setting.icon" [class]="'mr-50'"></span>
+                    <span *ngIf="!setting.icon" [class]="'mr-50'" (click)="onSettingClick(setting)"></span> {{setting.text}}
+                  </a>
+                </ng-template>
+              </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</ng-container>
+<!-- app-content-header end -->

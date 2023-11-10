@@ -1,0 +1,5 @@
+<!-- Create a template reference to the outlet directive with the template variable assignment #outlet="outlet".
+With this reference to the outlet directive, we can get the information of when the router outlet is active to trigger our animations. -->
+<div [@zoomIn]="zoomIn(outlet)" [@fadeInLeft]="fadeInLeft(outlet)" [@fadeIn]="fadeIn(outlet)">
+  <router-outlet #outlet="outlet"></router-outlet>
+</div>

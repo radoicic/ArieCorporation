@@ -1,0 +1,596 @@
+<div class="slideout-content">
+	<!-- Modal to add new vaccine starts-->
+	<div class="modalsd modal-slide-in sdfade new-vaccine-modal" id="modals-slide-in">
+		<div class="modal-dialog">
+			<form class="add-new-vaccine modal-content pt-0" (ngSubmit)="(newVaccineForm.form.valid)" #newVaccineForm="ngForm">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="toggleSidebar('new-vaccine-sidebar')"> × </button>
+				<div class="modal-header mb-1">
+					<div *ngIf="isAddModule;else content" class="modal-title" id="exampleModalLabel">Add Vaccine</div>
+					<ng-template #content>Edit Vaccine</ng-template>
+				</div>
+				<div class="modal-body flex-grow-1">
+					<!-- Wizard Start -->
+					<section class="horizontal-wizard">
+						<div id="stepper1" class="bs-stepper horizontal-wizard-example">
+							<!-- Header start -->
+							<div class="bs-stepper-header">
+								<div class="step" data-target="#vaccine-information">
+									<button class="step-trigger">
+										<span class="bs-stepper-box">1</span>
+										<span class="bs-stepper-label">
+											<span class="bs-stepper-title">Vaccine Type</span>
+											<span class="bs-stepper-subtitle">Setup Vaccine Type</span>
+										</span>
+									</button>
+								</div>
+								<div class="line">
+									<i data-feather="chevron-right" class="font-medium-2"></i>
+								</div>
+								<div class="step" data-target="#manufacturer-info">
+									<button class="step-trigger">
+										<span class="bs-stepper-box">2</span>
+										<span class="bs-stepper-label">
+											<span class="bs-stepper-title">Manufacturer Info</span>
+											<span class="bs-stepper-subtitle">Setup Manufacturer(s)</span>
+										</span>
+									</button>
+								</div>
+								<div class="line">
+									<i data-feather="chevron-right" class="font-medium-2"></i>
+								</div>
+								<div class="step" data-target="#dose-info">
+									<button class="step-trigger">
+										<span class="bs-stepper-box">3</span>
+										<span class="bs-stepper-label">
+											<span class="bs-stepper-title">Dose Info</span>
+											<span class="bs-stepper-subtitle">Setup Dose(s)</span>
+										</span>
+									</button>
+								</div>
+								<div class="line">
+									<i data-feather="chevron-right" class="font-medium-2"></i>
+								</div>
+								<div class="step" data-target="#summary">
+									<button class="step-trigger">
+										<span class="bs-stepper-box">4</span>
+										<span class="bs-stepper-label">
+											<span class="bs-stepper-title">Summary</span>
+											<span class="bs-stepper-subtitle">View summary</span>
+										</span>
+									</button>
+								</div>
+							</div>
+							<!-- Header end -->
+							<!-- Content start -->
+							<div class="bs-stepper-content">
+								<form (ngSubmit)="(WVForm.form.valid)" #WVForm="ngForm">
+									<div id="vaccine-information" class="content">
+										<form #vaccineDetailsForm="ngForm">
+											<div class="content-header">
+												<h5 class="mb-0">Vaccine Type</h5>
+												<small class="text-muted">Enter Vaccine Type or Name.</small>
+											</div>
+											<div class="row">
+												<div class="form-group col-md-12">
+													<label class="form-label" for="vaccine">Vaccine</label>
+													<input [(ngModel)]="vaccineNameVar" #VNameRef="ngModel" required type="text" name="vaccine" id="vaccine" class="form-control" [class.error]="!VNameRef.valid && vaccineDetailsForm.submitted" placeholder="Enter Vaccine Name" />
+													<span *ngIf="vaccineDetailsForm.submitted && VNameRef.invalid" class="invalid-form">
+														<small class="form-text text-danger" *ngIf="VNameRef.errors.required">This field is required!</small>
+													</span>
+												</div>
+											</div>
+											<div class="d-flex justify-content-between">
+												<button (click)="horizontalWizardStepperNext(vaccineDetailsForm)" type="submit" class="btn btn-primary btn-next" rippleEffect>
+													<span class="align-middle d-sm-inline-block d-none">Next</span>
+													<i data-feather="arrow-right" class="align-middle ml-sm-25 ml-0"></i>
+												</button>
+											</div>
+										</form>
+									</div>
+									<div id="manufacturer-info" class="content">
+										<form #manufacturerInfoForm="ngForm">
+											<div class="content-header">
+												<h5 class="mb-0">Manufacturer Info</h5>
+												<small>Setup one or more manufacturers/brands</small>
+											</div>
+											<div class="row">
+												<div class="form-group col-md-6">
+													<label class="form-label" for="manufacture-name">Manufacturer/Brand</label>
+													<input [(ngModel)]="manufacturerForm.manufacturerName" #manufactureRef="ngModel" required type="text" name="manufacture-name" id="manufacture-name" class="form-control" [class.error]="isadding && manufactureRef.invalid" placeholder="Enter Manufacturer or brand name" />
+													<span *ngIf="isadding && manufactureRef.invalid" class="invalid-form">
+														<small class="form-text text-danger" *ngIf="manufactureRef.errors.required">This field is required!</small>
+													</span>
+												</div>
+												<div class="form-group col-md-6">
+													<label class="form-label" for="lot">LOT</label>
+													<input [(ngModel)]="manufacturerForm.lot" #LOTRef="ngModel" required type="text" name="lot" id="lot" class="form-control" [class.error]="isadding && LOTRef.invalid" placeholder="Enter LOT" />
+													<span *ngIf="isadding && LOTRef.invalid" class="invalid-form">
+														<small class="form-text text-danger" *ngIf="LOTRef.errors.required">This field is required!</small>
+													</span>
+												</div>
+											</div>
+											<div class="row">
+												<div class="form-group col-md-6">
+													<label class="form-label" for="dose">Doses per package</label>
+													<input [(ngModel)]="manufacturerForm.dose" #doseRef="ngModel" required type="number" name="dose" id="dose" class="form-control" [class.error]="isadding && doseRef.invalid" placeholder="Enter Value" />
+													<span *ngIf="isadding && doseRef.invalid" class="invalid-form">
+														<small class="form-text text-danger" *ngIf="doseRef.errors.required">This field is required!</small>
+													</span>
+												</div>
+												<div class="form-group col-md-6">
+													<label class="form-label" for="units">Units</label>
+													<ng-select [items]="formOptions.unitOptions" bindLabel="unitName" bindValue="unitId" #unitRef="ngModel" [closeOnSelect]="true" placeholder="Select Units" [(ngModel)]="manufacturerForm.unitId" name="units"></ng-select>
+													<span *ngIf="isadding && unitRef.invalid" class="invalid-form">
+														<small class="form-text text-danger" *ngIf="unitRef.errors.required">This field is required!</small>
+													</span>
+												</div>
+											</div>
+											<div class="row">
+												<div class="form-group col-md-6">
+													<label class="form-label" for="visedition">VIS Edition</label>
+													<div class="form-group">
+														<div class="input-group">
+															<input class="form-control" placeholder="yyyy-mm-dd" name="visedition" [(ngModel)]="manufacturerForm.visedition" #viseditionRef="ngModel" ngbDatepicker #startPredictedDP="ngbDatepicker" required>
+															<div class="input-group-append">
+																<button class="btn btn-outline-secondary feather icon-calendar" (click)="startPredictedDP.toggle()" type="button" rippleEffect></button>
+															</div>
+														</div>
+													</div>
+													<span *ngIf="isadding && viseditionRef.invalid" class="invalid-form">
+														<small class="form-text text-danger" *ngIf="viseditionRef.errors.required">This field is required!</small>
+													</span>
+												</div>
+												<div class="form-group col-md-6">
+													<label class="form-label" for="expiration">Expiration</label>
+													<div class="form-group">
+														<div class="input-group">
+															<input class="form-control" placeholder="yyyy-mm-dd" name="expiration" [(ngModel)]="manufacturerForm.expiration" #expirationRef="ngModel" ngbDatepicker #expirationDP="ngbDatepicker" required>
+															<div class="input-group-append">
+																<button class="btn btn-outline-secondary feather icon-calendar" (click)="expirationDP.toggle()" type="button" rippleEffect></button>
+															</div>
+														</div>
+													</div>
+													<span *ngIf="isadding && expirationRef.invalid" class="invalid-form">
+														<small class="form-text text-danger" *ngIf="expirationRef.errors.required">This field is required!</small>
+													</span>
+												</div>
+											</div>
+											<div class="row">
+												<div class="form-group col-md-6">
+													<label class="form-label" for="quantity-name">Quantity</label>
+													<input [(ngModel)]="manufacturerForm.quantity" #quantityRef="ngModel" required type="text" name="quantity-name" id="quantity-name" class="form-control" [class.error]="isadding && quantityRef.invalid" placeholder="Enter quantity Name" />
+													<span *ngIf="isadding && quantityRef.invalid" class="invalid-form">
+														<small class="form-text text-danger" *ngIf="quantityRef.errors.required">This field is required!</small>
+													</span>
+												</div>
+											</div>
+											<!-- <div class="row"><div class="form-group col-md-12"><label class="form-label" for="comment">Comment</label><fieldset class="form-group"><textarea class="form-control" id="comment" rows="3" placeholder="Enter Comment"></textarea></fieldset></div></div> -->
+											<div class="row justify-content-end">
+												<button (click)="add(manufacturerInfoForm.form)" class="btn btn-primary btn-next mb-50" rippleEffect>
+													<span class="align-middle d-sm-inline-block d-none">Save and Add</span>
+												</button>
+											</div>
+											<div class="divider">
+												<div class="divider-text">Added Manufacturers</div>
+											</div>
+											<div class="row">
+												<table class="table">
+													<thead>
+														<tr>
+															<th scope="col">Manufacturer</th>
+															<th scope="col">Lot #</th>
+															<th scope="col">Doses </th>
+															<th scope="col">Quantity </th>
+															<th scope="col"></th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr *ngFor="let item of rows; index as i">
+															<td>{{ item.manufacturerName }}</td>
+															<td>{{ item.lot }}</td>
+															<td>{{ item.dose }}</td>
+															<td>{{ item.quantity }}</td>
+															<td>
+																<div class="d-flex align-items-center">
+																	<div ngbDropdown container="body">
+																		<a ngbDropdownToggle href="javascript:void(0);" class="hide-arrow" id="dropdownBrowserState" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+																			<i data-feather="more-vertical" class="text-primary cursor-pointer mr-50"></i>
+																		</a>
+																		<div ngbDropdownMenu class="dropdown-menu-right" aria-labelledby="dropdownBrowserState">
+																			<a href="javascript:void(0)" data-value="false" (click)="edit(modalBasic, i)" ngbDropdownItem class="d-flex align-items-center">
+																				<i data-feather="edit" class="mr-50"></i> Edit </a>
+																			<a href="javascript:void(0)" (click)="deleteVaccineManufacturer(i)" ngbDropdownItem class="d-flex align-items-center">
+																				<i data-feather="trash-2" class="mr-50"></i> Delete </a>
+																		</div>
+																	</div>
+																	<!-- Modal -->
+																	<ng-template #modalBasic let-modal>
+																		<div class="modal-header">
+																			<h4 class="modal-title" id="myModalLabel1">Edit</h4>
+																			<button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
+																				<span aria-hidden="true">&times;</span>
+																			</button>
+																		</div>
+																		<div class="modal-body" tabindex="0" ngbAutofocus>
+																			<div class="row">
+																				<div class="form-group col-md-6">
+																					<label class="form-label" for="manufacture-name">Manufacturer</label>
+																					<input [(ngModel)]="manufacturerForm.manufacturerName" #manufactureRef="ngModel" required type="text" name="manufacture-name" id="manufacture-name" class="form-control" [class.error]="isadding && manufactureRef.invalid" placeholder="Enter Manufacture Name" />
+																					<span *ngIf="isadding && manufactureRef.invalid" class="invalid-form">
+																						<small class="form-text text-danger" *ngIf="manufactureRef.errors.required">This field is required!</small>
+																					</span>
+																				</div>
+																				<div class="form-group col-md-6">
+																					<label class="form-label" for="lot">LOT</label>
+																					<input [(ngModel)]="manufacturerForm.lot" #LOTRef="ngModel" required type="text" name="lot" id="lot" class="form-control" [class.error]="isadding && LOTRef.invalid" placeholder="Enter LOT" />
+																					<span *ngIf="isadding && LOTRef.invalid" class="invalid-form">
+																						<small class="form-text text-danger" *ngIf="LOTRef.errors.required">This field is required!</small>
+																					</span>
+																				</div>
+																			</div>
+																			<div class="row">
+																				<div class="form-group col-md-6">
+																					<label class="form-label" for="dose">Dose</label>
+																					<input [(ngModel)]="manufacturerForm.dose" #doseRef="ngModel" required type="text" name="dose" id="dose" class="form-control" [class.error]="isadding && doseRef.invalid" placeholder="Enter Dose Value" />
+																					<span *ngIf="isadding && doseRef.invalid" class="invalid-form">
+																						<small class="form-text text-danger" *ngIf="doseRef.errors.required">This field is required!</small>
+																					</span>
+																				</div>
+																				<div class="form-group col-md-6">
+																					<label class="form-label" for="units">Units</label>
+																					<ng-select [items]="formOptions.unitOptions" bindLabel="unitName" bindValue="unitId" #unitRef="ngModel" [closeOnSelect]="true" placeholder="Select Units" [(ngModel)]="manufacturerForm.unitId" name="units"></ng-select>
+																					<span *ngIf="isadding && unitRef.invalid" class="invalid-form">
+																						<small class="form-text text-danger" *ngIf="unitRef.errors.required">This field is required!</small>
+																					</span>
+																				</div>
+																			</div>
+																			<div class="row">
+																				<div class="form-group col-md-6">
+																					<label class="form-label" for="visedition">VIS Edition</label>
+																					<div class="form-group">
+																						<div class="input-group">
+																							<input class="form-control" placeholder="yyyy-mm-dd" name="visedition" [(ngModel)]="manufacturerForm.visedition" #viseditionRef="ngModel" ngbDatepicker #startPredictedDP="ngbDatepicker" required>
+																							<div class="input-group-append">
+																								<button class="btn btn-outline-secondary feather icon-calendar" (click)="startPredictedDP.toggle()" type="button" rippleEffect></button>
+																							</div>
+																						</div>
+																					</div>
+																					<span *ngIf="isadding && viseditionRef.invalid" class="invalid-form">
+																						<small class="form-text text-danger" *ngIf="viseditionRef.errors.required">This field is required!</small>
+																					</span>
+																				</div>
+																				<div class="form-group col-md-6">
+																					<label class="form-label" for="expiration">Expiration</label>
+																					<div class="form-group">
+																						<div class="input-group">
+																							<input class="form-control" placeholder="yyyy-mm-dd" name="expiration" [(ngModel)]="manufacturerForm.expiration" #expirationRef="ngModel" ngbDatepicker #expirationDP="ngbDatepicker" required>
+																							<div class="input-group-append">
+																								<button class="btn btn-outline-secondary feather icon-calendar" (click)="expirationDP.toggle()" type="button" rippleEffect></button>
+																							</div>
+																						</div>
+																					</div>
+																					<span *ngIf="isadding && expirationRef.invalid" class="invalid-form">
+																						<small class="form-text text-danger" *ngIf="expirationRef.errors.required">This field is required!</small>
+																					</span>
+																				</div>
+																			</div>
+																			<div class="row">
+																				<div class="form-group col-md-6">
+																					<label class="form-label" for="quantity-name">Quantity</label>
+																					<input [(ngModel)]="manufacturerForm.quantity" #quantityRef="ngModel" required type="text" name="quantity-name" id="quantity-name" class="form-control" [class.error]="isadding && quantityRef.invalid" placeholder="Enter quantity Name" />
+																					<span *ngIf="isadding && quantityRef.invalid" class="invalid-form">
+																						<small class="form-text text-danger" *ngIf="quantityRef.errors.required">This field is required!</small>
+																					</span>
+																				</div>
+																			</div>
+																			<!-- <div class="row"><div class="form-group col-md-12"><label class="form-label" for="comment">Comment</label><fieldset class="form-group"><textarea class="form-control" id="comment" rows="3" placeholder="Enter Comment"></textarea></fieldset></div></div> -->
+																		</div>
+																		<div class="modal-footer">
+																			<button type="button" class="btn btn-primary" (click)="accpet(i, modal)" rippleEffect> Accept </button>
+																		</div>
+																	</ng-template>
+																	<!-- / Modal -->
+																</div>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+												<div *ngIf="rows?.length===0" style="display: table; margin: 0 auto;">No Records Found</div>
+											</div>
+											<hr>
+											<div class="d-flex justify-content-between">
+												<button type="button" (click)="horizontalWizardStepperPrevious()" class="btn btn-primary btn-prev" rippleEffect>
+													<i data-feather="arrow-left" class="align-middle mr-sm-25 mr-0"></i>
+													<span class="align-middle d-sm-inline-block d-none">Previous</span>
+												</button>
+												<button (click)="horizontalWizardStepperNext(null)" type="submit" class="btn btn-primary btn-next" rippleEffect>
+													<span class="align-middle d-sm-inline-block d-none">Next</span>
+													<i data-feather="arrow-right" class="align-middle ml-sm-25 ml-0"></i>
+												</button>
+												<button (click)="horizontalWizardStepperSkipNext(vaccineDetailsForm)" class="btn btn-primary btn-next" rippleEffect>
+													<span class="align-middle d-sm-inline-block d-none">Skip & Submit</span>
+													<i data-feather="arrow-right" class="align-middle ml-sm-25 ml-0"></i>
+												</button>
+											</div>
+										</form>
+									</div>
+									<div id="dose-info" class="content">
+										<form #doseInfoForm="ngForm">
+											<div class="content-header">
+												<h5 class="mb-0">Dose Info</h5>
+												<small>Setup one or more doses</small>
+											</div>
+											<div class="row">
+												<div class="form-group col-md-6">
+													<label class="form-label">Dose Name</label>
+													<input [(ngModel)]="vaccineDoseForm.vaccineDoseName" #doseNameRef="ngModel" required type="text" class="form-control" [class.error]="isadding && doseNameRef.invalid" placeholder="Enter Dose Name" name="doseName" />
+													<span *ngIf="isadding && doseNameRef.invalid" class="invalid-form">
+														<small class="form-text text-danger" *ngIf="doseNameRef.errors.required">This field is required!</small>
+													</span>
+												</div>
+												<div class="form-group col-md-6">
+													<label class="form-label">Dose Number</label>
+													<select [(ngModel)]="vaccineDoseForm.doseNo" #doseNo="ngModel" required class="form-control" [class.error]="isadding && doseNo.invalid" name="doseNumber">
+														<option [value]="1"> 1 </option>
+														<option [value]="1"> 2 </option>
+														<option [value]="1"> 3 </option>
+														<option [value]="1"> 4 </option>
+														<option [value]="1"> 5 </option>
+													</select>
+													<span *ngIf="isadding && doseNo.invalid" class="invalid-form">
+														<small class="form-text text-danger" *ngIf="doseNo.errors.required">This field is required!</small>
+													</span>
+												</div>
+											</div>
+											<div class="row">
+												<div class="form-group col-md-6">
+													<label class="form-label">Predicted Start Date</label>
+													<select [(ngModel)]="vaccineDoseForm.predictedStartDateId" #predictedStartDateRef="ngModel" required class="form-control" [class.error]="isadding && predictedStartDateRef.invalid" name="predictedStartDate">
+														<option *ngFor="let predictedDate of formOptions.predictedDateOptions" [value]="predictedDate.predictedDateId">
+															{{predictedDate.predictedDateName}}
+														</option>
+													</select>
+													<span *ngIf="isadding && predictedStartDateRef.invalid" class="invalid-form">
+														<small class="form-text text-danger" *ngIf="predictedStartDateRef.errors.required">This field is required!</small>
+													</span>
+												</div>
+												<div class="form-group col-md-6">
+													<label class="form-label">Predicted End Date</label>
+													<select [(ngModel)]="vaccineDoseForm.predictedEndDateId" #predictedEndDateRef="ngModel" required class="form-control" [class.error]="isadding && predictedEndDateRef.invalid" name="predictedEndDate">
+														<option *ngFor="let predictedDate of formOptions.predictedDateOptions" [value]="predictedDate.predictedDateId">
+															{{predictedDate.predictedDateName}}
+														</option>
+													</select>
+													<span *ngIf="isadding && predictedEndDateRef.invalid" class="invalid-form">
+														<small class="form-text text-danger" *ngIf="predictedEndDateRef.errors.required">This field is required!</small>
+													</span>
+												</div>
+											</div>
+											<!-- <div class="row"><div class="form-group col-md-12"><label class="form-label" for="comment">Comment</label><fieldset class="form-group"><textarea class="form-control" id="comment" rows="3" placeholder="Enter Comment"></textarea></fieldset></div></div> -->
+											<div class="row justify-content-end">
+												<button (click)="addDose(doseInfoForm.form)" class="btn btn-primary btn-next mb-50" rippleEffect>
+													<span class="align-middle d-sm-inline-block d-none">Save and Add</span>
+												</button>
+											</div>
+											<div class="divider">
+												<div class="divider-text">Added Doses</div>
+											</div>
+											<div class="row">
+												<table class="table">
+													<thead>
+														<tr>
+															<th scope="col">Dose Name</th>
+															<th scope="col">Doses Number</th>
+															<th scope="col">Predicted Start Date </th>
+															<th scope="col">Predicted End Date</th>
+															<th scope="col"></th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr *ngFor="let item of doses; index as i">
+															<td>{{item.vaccineDoseName}}</td>
+															<td>{{item.doseNo}}</td>
+															<td>{{predictedDateOptionById(item.predictedStartDateId)}}</td>
+															<td>{{predictedDateOptionById(item.predictedEndDateId)}}</td>
+															<td>
+																<div class="d-flex align-items-center">
+																	<div ngbDropdown container="body">
+																		<a ngbDropdownToggle href="javascript:void(0);" class="hide-arrow" id="dropdownBrowserState" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+																			<i data-feather="more-vertical" class="text-primary cursor-pointer mr-50"></i>
+																		</a>
+																		<div ngbDropdownMenu class="dropdown-menu-right" aria-labelledby="dropdownBrowserState">
+																			<a href="javascript:void(0)" data-value="false" (click)="editDose(modalDose, i)" ngbDropdownItem class="d-flex align-items-center">
+																				<i data-feather="edit" class="mr-50"></i> Edit </a>
+																			<a href="javascript:void(0)" (click)="deleteVaccineDose(i)" ngbDropdownItem class="d-flex align-items-center">
+																				<i data-feather="trash-2" class="mr-50"></i> Delete </a>
+																		</div>
+																	</div>
+																	<!-- Modal -->
+																	<ng-template #modalDose let-modal>
+																		<div class="modal-header">
+																			<h4 class="modal-title" id="myModalLabel1">Edit</h4>
+																			<button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
+																				<span aria-hidden="true">&times;</span>
+																			</button>
+																		</div>
+																		<div class="modal-body" tabindex="0" ngbAutofocus>
+																			<div class="row">
+																				<div class="form-group col-md-6">
+																					<label class="form-label">Dose Name</label>
+																					<input [(ngModel)]="vaccineDoseForm.vaccineDoseName" #doseNameRef="ngModel" required type="text" class="form-control" [class.error]="isadding && doseNameRef.invalid" placeholder="Enter Dose Name" name="doseName" />
+																					<span *ngIf="isadding && doseNameRef.invalid" class="invalid-form">
+																						<small class="form-text text-danger" *ngIf="doseNameRef.errors.required">This field is required!</small>
+																					</span>
+																				</div>
+																				<div class="form-group col-md-6">
+																					<label class="form-label">Dose Number</label>
+																					<select [(ngModel)]="vaccineDoseForm.doseNo" #doseNo="ngModel" required class="form-control" [class.error]="isadding && doseNo.invalid" name="doseNumber">
+																						<option [value]="1"> 1 </option>
+																						<option [value]="1"> 2 </option>
+																						<option [value]="1"> 3 </option>
+																						<option [value]="1"> 4 </option>
+																						<option [value]="1"> 5 </option>
+																					</select>
+																					<span *ngIf="isadding && doseNo.invalid" class="invalid-form">
+																						<small class="form-text text-danger" *ngIf="doseNo.errors.required">This field is required!</small>
+																					</span>
+																				</div>
+																			</div>
+																			<div class="row">
+																				<div class="form-group col-md-6">
+																					<label class="form-label">Predicted Start Date</label>
+																					<select [(ngModel)]="vaccineDoseForm.predictedStartDateId" #predictedStartDateRef="ngModel" required class="form-control" [class.error]="isadding && predictedStartDateRef.invalid" name="predictedStartDate">
+																						<option *ngFor="let predictedDate of formOptions.predictedDateOptions" [value]="predictedDate.predictedDateId">
+																							{{predictedDate.predictedDateName}}
+																						</option>
+																					</select>
+																					<span *ngIf="isadding && predictedStartDateRef.invalid" class="invalid-form">
+																						<small class="form-text text-danger" *ngIf="predictedStartDateRef.errors.required">This field is required!</small>
+																					</span>
+																				</div>
+																				<div class="form-group col-md-6">
+																					<label class="form-label">Predicted End Date</label>
+																					<select [(ngModel)]="vaccineDoseForm.predictedEndDateId" #predictedEndDateRef="ngModel" required class="form-control" [class.error]="isadding && predictedEndDateRef.invalid" name="predictedEndDate">
+																						<option *ngFor="let predictedDate of formOptions.predictedDateOptions" [value]="predictedDate.predictedDateId">
+																							{{predictedDate.predictedDateName}}
+																						</option>
+																					</select>
+																					<span *ngIf="isadding && predictedEndDateRef.invalid" class="invalid-form">
+																						<small class="form-text text-danger" *ngIf="predictedEndDateRef.errors.required">This field is required!</small>
+																					</span>
+																				</div>
+																			</div>
+																		</div>
+																		<div class="modal-footer">
+																			<button type="button" class="btn btn-primary" (click)="acceptDose(i, modal)" rippleEffect> Accept </button>
+																		</div>
+																	</ng-template>
+																	<!-- / Modal -->
+																</div>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+												<div *ngIf="doses?.length===0" style="display: table; margin: 0 auto;">No Records Found</div>
+											</div>
+											<hr>
+											<div class="d-flex justify-content-between">
+												<button type="button" (click)="horizontalWizardStepperPrevious()" class="btn btn-primary btn-prev" rippleEffect>
+													<i data-feather="arrow-left" class="align-middle mr-sm-25 mr-0"></i>
+													<span class="align-middle d-sm-inline-block d-none">Previous</span>
+												</button>
+												<button (click)="horizontalWizardStepperNext(null)" type="submit" class="btn btn-primary btn-next" rippleEffect>
+													<span class="align-middle d-sm-inline-block d-none">Next</span>
+													<i data-feather="arrow-right" class="align-middle ml-sm-25 ml-0"></i>
+												</button>
+												<button (click)="horizontalWizardStepperSkipNext(vaccineDetailsForm)" class="btn btn-primary btn-next" rippleEffect>
+													<span class="align-middle d-sm-inline-block d-none">Skip & Submit</span>
+													<i data-feather="arrow-right" class="align-middle ml-sm-25 ml-0"></i>
+												</button>
+											</div>
+										</form>
+									</div>
+									<div id="summary" class="content">
+										<form #summaryForm="ngForm">
+											<div class="content-header">
+												<h5 class="mb-0">Summary</h5>
+												<small>Check summary before submitting</small>
+											</div>
+											<div class="row">
+												<div class="col-12">
+													<div class="form-group row">
+														<div class="col-sm-3 col-form-label">
+															<label>Vaccine Type</label>: {{vaccineNameVar}}
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-12">
+													<div class="divider">
+														<div class="divider-text">Added Manufacturers</div>
+													</div>
+													<div class="row">
+														<table class="table">
+															<thead>
+																<tr>
+																	<th scope="col">Manufacturer</th>
+																	<th scope="col">Lot #</th>
+																	<th scope="col">Doses </th>
+																	<th scope="col">Quantity </th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr *ngFor="let item of rows">
+																	<td>{{ item.manufacturerName }}</td>
+																	<td>{{ item.lot }}</td>
+																	<td>{{ item.dose }}</td>
+																	<td>{{ item.quantity }}</td>
+																</tr>
+															</tbody>
+														</table>
+														<div *ngIf="rows?.length===0" style="display: table; margin: 0 auto;">No Records Found</div>
+													</div>
+													<hr>
+													<!-- <div class="form-group row"><table class="table"><thead><tr><th scope="col">Dose#</th><th scope="col">Predicted Start Date</th><th scope="col">Predicted End Date </th></tr></thead><tbody ><tr *ngFor="let item of rows"><td>{{ item.vaccineDoseName }}</td><td>{{ item.startPredictedDate }}</td><td>{{ item.endPredictedDate }}</td></tr></tbody></table><div *ngIf="rows?.length===0">No Record Found</div></div> -->
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-12">
+													<div class="divider">
+														<div class="divider-text">Added Doses</div>
+													</div>
+													<div class="row">
+														<table class="table">
+															<thead>
+																<tr>
+																	<th scope="col">Dose Name</th>
+																	<th scope="col">Dose Number</th>
+																	<th scope="col">Predicted Start Date</th>
+																	<th scope="col">Predicted End Date </th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr *ngFor="let item of doses">
+																	<td>{{item.vaccineDoseName}}</td>
+																	<td>{{item.doseNo}}</td>
+																	<td>{{predictedDateOptionById(item.predictedStartDateId)}}</td>
+																	<td>{{predictedDateOptionById(item.predictedEndDateId)}}</td>
+																</tr>
+															</tbody>
+														</table>
+														<div *ngIf="doses?.length===0" style="display: table; margin: 0 auto;">No Records Found</div>
+													</div>
+													<hr>
+													<!-- <div class="form-group row"><table class="table"><thead><tr><th scope="col">Dose#</th><th scope="col">Predicted Start Date</th><th scope="col">Predicted End Date </th></tr></thead><tbody ><tr *ngFor="let item of rows"><td>{{ item.vaccineDoseName }}</td><td>{{ item.startPredictedDate }}</td><td>{{ item.endPredictedDate }}</td></tr></tbody></table><div *ngIf="rows?.length===0">No Record Found</div></div> -->
+												</div>
+											</div>
+											<div class="d-flex justify-content-between">
+												<button type="button" (click)="horizontalWizardStepperPrevious()" class="btn btn-primary btn-prev" rippleEffect>
+													<i data-feather="arrow-left" class="align-middle mr-sm-25 mr-0"></i>
+													<span class="align-middle d-sm-inline-block d-none">Previous</span>
+												</button>
+												<button class="btn btn-success btn-submit" rippleEffect (click)="submit()">Submit</button>
+											</div>
+										</form>
+									</div>
+								</form>
+							</div>
+							<!-- Content end -->
+						</div>
+					</section>
+					<!-- Wizard End -->
+					<!-- <button type="submit" class="btn btn-primary mr-1" (click)="submit(newVaccineForm)" rippleEffect>Submit</button><button
+              type="reset"
+              class="btn btn-outline-secondary"
+              (click)="toggleSidebar('new-vaccine-sidebar')"
+              rippleEffect
+            >
+              Cancel
+            </button> -->
+				</div>
+			</form>
+		</div>
+	</div>
+	<!-- Modal to add new vaccine Ends-->
+</div>
